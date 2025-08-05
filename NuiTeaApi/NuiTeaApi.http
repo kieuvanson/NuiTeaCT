@@ -1,0 +1,6 @@
+@NuiTeaApi_HostAddress = http://localhost:5249
+
+GET {{NuiTeaApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

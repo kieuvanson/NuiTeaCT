@@ -1,0 +1,8 @@
+{
+  "name": "nuiteaplus",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "cd nui_tea && npm install && npm run build",
+    "start": "cd nui_tea && npm start"
+  }
+}
