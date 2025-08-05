@@ -108,6 +108,7 @@ function AboutPage({ setScrollToSection }) {
   });
   const [page, setPage] = useState('about');
   const [showCart, setShowCart] = useState(false);
+  const [showLogin, setShowLogin] = useState(false);
   const navigate = useNavigate();
 
   // Truyền hàm onMenuScroll để chuyển về trang chủ và setScrollToSection
@@ -118,10 +119,21 @@ function AboutPage({ setScrollToSection }) {
 
   return (
     <div className="main-content">
-      <MenuBar user={user} setUser={setUser} setPage={setPage} onMenuScroll={handleMenuScroll} setShowCart={setShowCart} />
+      <MenuBar user={user} setUser={setUser} setPage={setPage} onMenuScroll={handleMenuScroll} setShowLogin={setShowLogin} setShowCart={setShowCart} />
       <About />
       <Footer />
-      <CartModal isOpen={showCart} onClose={() => setShowCart(false)} user={user} />
+      <CartModal isOpen={showCart} onClose={() => setShowCart(false)} user={user} setShowLogin={setShowLogin} />
+
+      {/* Login Modal */}
+      {showLogin && (
+        <LoginModal
+          onClose={() => setShowLogin(false)}
+          onLogin={(userData) => {
+            setUser(userData);
+            setShowLogin(false);
+          }}
+        />
+      )}
     </div>
   );
 }
@@ -216,7 +228,7 @@ function HomePage({ scrollToSection, setScrollToSection }) {
     <div className="main-content">
       <MenuBar user={user} setUser={setUser} setPage={setPage} onMenuScroll={handleMenuScroll} setShowLogin={setShowLogin} setShowCart={setShowCart} />
       <Banner bannerImage={bannerImage} />
-      <ProductSection />
+      <ProductSection user={user} setShowLogin={setShowLogin} />
       <PromotionsSection promoRef={promoRef} />
       <div className="banner-secondary" style={{ width: '100vw', position: 'relative', left: '50%', transform: 'translateX(-50%)', margin: '40px 0 0 0', textAlign: 'center' }}>
         <img src="https://tocotocotea.com.vn/wp-content/uploads/2021/12/slideshow1_2.jpg" alt="Banner ưu đãi" style={{ width: '100vw', maxWidth: '100vw', borderRadius: 18, boxShadow: '0 4px 32px #b8860b22', display: 'block' }} />
@@ -227,7 +239,7 @@ function HomePage({ scrollToSection, setScrollToSection }) {
       {showLogin && <LoginModal onClose={() => setShowLogin(false)} onRegister={() => { setShowLogin(false); setShowRegister(true); }} onForgot={() => { setShowLogin(false); setShowForgot(true); }} onLoginSuccess={(data) => { setUser(normalizeUser(data)); localStorage.setItem('nui_tea_user', JSON.stringify(normalizeUser(data))); setShowLogin(false); }} />}
       {showRegister && <RegisterModal onClose={() => { setShowRegister(false); setShowLogin(true); }} onLogin={() => { setShowRegister(false); setShowLogin(true); }} />}
       {showForgot && <ForgotModal onClose={() => setShowForgot(false)} onLogin={() => { setShowForgot(false); setShowLogin(true); }} />}
-      <CartModal isOpen={showCart} onClose={() => setShowCart(false)} user={user} />
+      <CartModal isOpen={showCart} onClose={() => setShowCart(false)} user={user} setShowLogin={setShowLogin} />
     </div>
   );
 }
@@ -2408,21 +2420,16 @@ function AdminPage() {
 
 function App() {
   const [scrollToSection, setScrollToSection] = useState(null);
-  // Kiểm tra user trong localStorage
-  const user = (() => {
+  const [user, setUser] = useState(() => {
     const u = localStorage.getItem('nui_tea_user');
     return u ? JSON.parse(u) : null;
-  })();
+  });
+  const [showLogin, setShowLogin] = useState(false);
+  const [showCart, setShowCart] = useState(false);
 
   // Protected Route component
   const ProtectedAdminRoute = () => {
-    // Kiểm tra user từ localStorage một cách động
-    const currentUser = (() => {
-      const u = localStorage.getItem('nui_tea_user');
-      return u ? JSON.parse(u) : null;
-    })();
-
-    if (!currentUser || !(currentUser.role === 'admin' || currentUser.email === 'admin@nuitea.com')) {
+    if (!user || !(user.role === 'admin' || user.email === 'admin@nuitea.com')) {
       return <Navigate to="/login" />;
     }
     return <AdminPage />;
@@ -2437,9 +2444,26 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/admin" element={<ProtectedAdminRoute />} />
           <Route path="/menu" element={<MenuPage />} />
-          <Route path="/order-status/:orderId" element={<OrderStatusPage />} />
+          <Route path="/order-status/:orderId" element={<OrderStatusPage user={user} setUser={setUser} setPage={() => { }} onMenuScroll={() => { }} setShowLogin={setShowLogin} setShowCart={setShowCart} />} />
           <Route path="/" element={<HomePage scrollToSection={scrollToSection} setScrollToSection={setScrollToSection} />} />
         </Routes>
+
+        {/* Modals */}
+        {showLogin && (
+          <LoginModal
+            onClose={() => setShowLogin(false)}
+            onLogin={(userData) => {
+              setUser(userData);
+              setShowLogin(false);
+            }}
+          />
+        )}
+        {showCart && (
+          <CartModal
+            onClose={() => setShowCart(false)}
+            setShowLogin={setShowLogin}
+          />
+        )}
       </Router>
     </CartProvider>
   );
@@ -2592,7 +2616,7 @@ function Footer() {
   );
 }
 
-function ProductSection() {
+function ProductSection({ user, setShowLogin }) {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
@@ -2701,7 +2725,7 @@ function ProductSection() {
       });
   }, []);
 
-  return <FeaturedProducts products={products} />;
+  return <FeaturedProducts products={products} user={user} setShowLogin={setShowLogin} />;
 }
 
 export default App;
@@ -2713,38 +2737,338 @@ function PromotionsSection({ promoRef }) {
       .then(res => res.json())
       .then(data => setPromos(data));
   }, []);
+
   return (
-    <section className="promotions" ref={promoRef}>
-      <div className="container">
-        <h2 style={{ fontSize: 36, fontWeight: 800, color: '#a0522d', marginBottom: 32, letterSpacing: 1 }}>🎁 Khuyến mãi hôm nay</h2>
-        <div className="promo-cards promo-cards-fancy">
+    <section
+      ref={promoRef}
+      style={{
+        padding: '80px 0',
+        background: 'linear-gradient(135deg, #faf8f3 0%, #fff7e6 100%)',
+        position: 'relative',
+        overflow: 'hidden'
+      }}
+    >
+      {/* Background decoration */}
+      <div style={{
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        background: 'url("data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23b8860b" fill-opacity="0.03"%3E%3Ccircle cx="30" cy="30" r="2"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")',
+        opacity: 0.5
+      }} />
+
+      <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 20px', position: 'relative', zIndex: 1 }}>
+        {/* Header */}
+        <div style={{ textAlign: 'center', marginBottom: 60 }}>
+          <h2 style={{
+            fontSize: '48px',
+            fontWeight: 800,
+            color: '#8B4513',
+            marginBottom: 16,
+            letterSpacing: '2px',
+            textShadow: '0 2px 4px rgba(139, 69, 19, 0.1)'
+          }}>
+            🎁 Khuyến mãi đặc biệt
+          </h2>
+          <p style={{
+            fontSize: '18px',
+            color: '#666',
+            maxWidth: 600,
+            margin: '0 auto',
+            lineHeight: 1.6
+          }}>
+            Những ưu đãi hấp dẫn dành riêng cho bạn
+          </p>
+        </div>
+
+        {/* Promotions Grid */}
           {promos.length === 0 ? (
-            <p>Không có khuyến mãi nào khả dụng.</p>
-          ) : promos.map((promo) => (
-            <div className="promo-card promo-card-fancy" key={promo.id}>
-              <div className="promo-icon">
-                <span role="img" aria-label="gift" style={{ fontSize: 36 }}>🎉</span>
+          <div style={{
+            textAlign: 'center',
+            padding: '60px 20px',
+            background: '#fff',
+            borderRadius: '20px',
+            boxShadow: '0 8px 32px rgba(139, 69, 19, 0.1)',
+            border: '2px dashed #b8860b'
+          }}>
+            <div style={{ fontSize: '64px', marginBottom: 16 }}>🎉</div>
+            <h3 style={{ color: '#8B4513', marginBottom: 8 }}>Chưa có khuyến mãi</h3>
+            <p style={{ color: '#666' }}>Hãy quay lại sau để xem những ưu đãi mới nhất!</p>
               </div>
-              <div className="promo-main">
-                <div className="promo-title">
+        ) : (
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))',
+            gap: '30px',
+            marginBottom: 40
+          }}>
+            {promos.map((promo) => (
+              <div
+                key={promo.id}
+                style={{
+                  background: 'linear-gradient(135deg, #fff 0%, #faf8f3 100%)',
+                  borderRadius: '24px',
+                  padding: '32px',
+                  boxShadow: '0 12px 40px rgba(139, 69, 19, 0.15)',
+                  border: '1px solid rgba(184, 134, 11, 0.1)',
+                  position: 'relative',
+                  overflow: 'hidden',
+                  transition: 'all 0.3s ease',
+                  cursor: 'pointer'
+                }}
+                onMouseEnter={(e) => {
+                  e.target.style.transform = 'translateY(-8px)';
+                  e.target.style.boxShadow = '0 20px 60px rgba(139, 69, 19, 0.25)';
+                }}
+                onMouseLeave={(e) => {
+                  e.target.style.transform = 'translateY(0)';
+                  e.target.style.boxShadow = '0 12px 40px rgba(139, 69, 19, 0.15)';
+                }}
+              >
+                {/* Decorative corner */}
+                <div style={{
+                  position: 'absolute',
+                  top: 0,
+                  right: 0,
+                  width: '80px',
+                  height: '80px',
+                  background: 'linear-gradient(135deg, transparent 50%, #b8860b 50%)',
+                  borderRadius: '0 24px 0 80px',
+                  opacity: 0.1
+                }} />
+
+                {/* Icon */}
+                <div style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  marginBottom: '20px'
+                }}>
+                  <div style={{
+                    width: '60px',
+                    height: '60px',
+                    borderRadius: '50%',
+                    background: 'linear-gradient(135deg, #b8860b, #e5d3b3)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    fontSize: '28px',
+                    marginRight: '16px',
+                    boxShadow: '0 4px 16px rgba(184, 134, 11, 0.3)'
+                  }}>
+                    🎉
+                  </div>
+                  <div>
+                    <div style={{
+                      fontSize: '28px',
+                      fontWeight: 800,
+                      color: '#8B4513',
+                      marginBottom: '4px'
+                    }}>
                   {promo.discountType === 'percent'
                     ? `Giảm ${promo.discountValue}%`
                     : `Giảm ${promo.discountValue.toLocaleString()}đ`}
                 </div>
-                <div className="promo-desc">{promo.description}</div>
-                <div className="promo-meta">
-                  <span className="promo-expiry">HSD: {promo.expiryDate ? promo.expiryDate.slice(0, 10) : ''}</span>
-                  <span className="promo-status" style={{ color: promo.isActive ? '#008000' : '#d2691e', fontWeight: 600, marginLeft: 12 }}>{promo.isActive ? 'Còn hiệu lực' : 'Hết hạn'}</span>
+                    <div style={{
+                      fontSize: '14px',
+                      color: '#666',
+                      fontWeight: 500
+                    }}>
+                      {promo.description}
                 </div>
-                <div className="promo-coupon">
-                  <span className="coupon-label">Mã giảm giá</span>
-                  <span className="coupon-code">{promo.code}</span>
+                  </div>
+                </div>
+
+                {/* Details */}
+                <div style={{
+                  background: '#f8f9fa',
+                  borderRadius: '16px',
+                  padding: '20px',
+                  marginBottom: '20px',
+                  border: '1px solid rgba(184, 134, 11, 0.1)'
+                }}>
+                  <div style={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                    marginBottom: '12px'
+                  }}>
+                    <span style={{
+                      fontSize: '14px',
+                      color: '#666',
+                      fontWeight: 500
+                    }}>
+                      Hạn sử dụng
+                    </span>
+                    <span style={{
+                      fontSize: '14px',
+                      color: '#8B4513',
+                      fontWeight: 600
+                    }}>
+                      {promo.expiryDate ? promo.expiryDate.slice(0, 10) : 'Không giới hạn'}
+                    </span>
+                  </div>
+
+                  <div style={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'center'
+                  }}>
+                    <span style={{
+                      fontSize: '14px',
+                      color: '#666',
+                      fontWeight: 500
+                    }}>
+                      Trạng thái
+                    </span>
+                    <span style={{
+                      fontSize: '14px',
+                      color: promo.isActive ? '#28a745' : '#dc3545',
+                      fontWeight: 600,
+                      padding: '4px 12px',
+                      borderRadius: '20px',
+                      background: promo.isActive ? 'rgba(40, 167, 69, 0.1)' : 'rgba(220, 53, 69, 0.1)'
+                    }}>
+                      {promo.isActive ? 'Còn hiệu lực' : 'Hết hạn'}
+                    </span>
+                  </div>
+                </div>
+
+                {/* Coupon Code */}
+                <div style={{
+                  background: 'linear-gradient(135deg, #8B4513, #b8860b)',
+                  borderRadius: '20px',
+                  padding: '24px',
+                  textAlign: 'center',
+                  position: 'relative',
+                  overflow: 'hidden',
+                  border: '3px solid #fff',
+                  boxShadow: '0 8px 32px rgba(139, 69, 19, 0.4), inset 0 1px 0 rgba(255,255,255,0.3)'
+                }}>
+                  {/* Animated background pattern */}
+                  <div style={{
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    bottom: 0,
+                    background: 'repeating-linear-gradient(45deg, transparent, transparent 8px, rgba(255,255,255,0.15) 8px, rgba(255,255,255,0.15) 16px)',
+                    pointerEvents: 'none',
+                    animation: 'shimmer 2s ease-in-out infinite'
+                  }} />
+
+                  {/* Copy button */}
+                  <div style={{
+                    position: 'absolute',
+                    top: '8px',
+                    right: '8px',
+                    background: 'rgba(255,255,255,0.2)',
+                    border: '1px solid rgba(255,255,255,0.3)',
+                    borderRadius: '50%',
+                    width: '32px',
+                    height: '32px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    cursor: 'pointer',
+                    fontSize: '14px',
+                    color: '#fff',
+                    transition: 'all 0.2s ease'
+                  }}
+                    onMouseEnter={(e) => {
+                      e.target.style.background = 'rgba(255,255,255,0.3)';
+                      e.target.style.transform = 'scale(1.1)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.target.style.background = 'rgba(255,255,255,0.2)';
+                      e.target.style.transform = 'scale(1)';
+                    }}
+                    onClick={() => {
+                      navigator.clipboard.writeText(promo.code);
+                      alert('Đã sao chép mã giảm giá!');
+                    }}
+                  >
+                    📋
+                  </div>
+
+                  <div style={{
+                    fontSize: '14px',
+                    color: 'rgba(255,255,255,0.9)',
+                    marginBottom: '12px',
+                    fontWeight: 600,
+                    textTransform: 'uppercase',
+                    letterSpacing: '1px'
+                  }}>
+                    Mã giảm giá
+                  </div>
+                  <div style={{
+                    fontSize: '32px',
+                    color: '#fff',
+                    fontWeight: 900,
+                    letterSpacing: '3px',
+                    textShadow: '0 4px 8px rgba(0,0,0,0.3), 0 0 20px rgba(255,255,255,0.2)',
+                    fontFamily: 'monospace',
+                    background: 'linear-gradient(45deg, #fff, #f0f0f0)',
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent',
+                    filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.5))'
+                  }}>
+                    {promo.code}
+                  </div>
+
+                  {/* Usage instruction */}
+                  <div style={{
+                    fontSize: '12px',
+                    color: 'rgba(255,255,255,0.8)',
+                    marginTop: '8px',
+                    fontWeight: 500
+                  }}>
+                    Nhấn để sao chép mã
                 </div>
               </div>
             </div>
           ))}
         </div>
+        )}
+
+        {/* Call to action */}
+        <div style={{
+          textAlign: 'center',
+          marginTop: '40px'
+        }}>
+          <button style={{
+            background: 'linear-gradient(135deg, #b8860b, #e5d3b3)',
+            color: '#fff',
+            border: 'none',
+            borderRadius: '50px',
+            padding: '16px 40px',
+            fontSize: '18px',
+            fontWeight: 700,
+            cursor: 'pointer',
+            boxShadow: '0 8px 24px rgba(184, 134, 11, 0.3)',
+            transition: 'all 0.3s ease'
+          }}
+            onMouseEnter={(e) => {
+              e.target.style.transform = 'translateY(-2px)';
+              e.target.style.boxShadow = '0 12px 32px rgba(184, 134, 11, 0.4)';
+            }}
+            onMouseLeave={(e) => {
+              e.target.style.transform = 'translateY(0)';
+              e.target.style.boxShadow = '0 8px 24px rgba(184, 134, 11, 0.3)';
+            }}
+          >
+            🛒 Xem tất cả sản phẩm
+          </button>
       </div>
+      </div>
+
+      <style>{`
+        @keyframes shimmer {
+          0% { transform: translateX(-100%); }
+          100% { transform: translateX(100%); }
+        }
+      `}</style>
     </section>
   );
 }

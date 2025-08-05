@@ -181,7 +181,7 @@ export default function CheckoutPage() {
                 email: customerEmail,
                 phone: customerPhone, // Số điện thoại thực
                 address: address,
-                items: items,
+                items: orderItems, // Sử dụng orderItems thay vì items để có đầy đủ thông tin
                 totalAmount: totalAfterDiscount,
                 paymentMethod: paymentText[paymentMethod],
                 paymentStatus: paymentMethod === 'cod' ? 'Chưa thanh toán' : 'Đã thanh toán',

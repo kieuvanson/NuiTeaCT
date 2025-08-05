@@ -4,7 +4,7 @@ import { useCart } from '../contexts/CartContext';
 import { useNavigate } from 'react-router-dom';
 import OrderHistory from './OrderHistory';
 
-export default function CartModal({ isOpen, onClose, user }) {
+export default function CartModal({ isOpen, onClose, user, setShowLogin }) {
     const { items, removeItem, updateQuantity, clearCart, getTotalPrice } = useCart();
     const [isCheckingOut, setIsCheckingOut] = useState(false);
     const [showOrderHistory, setShowOrderHistory] = useState(false);
@@ -17,7 +17,50 @@ export default function CartModal({ isOpen, onClose, user }) {
         }).format(price);
     };
 
+    // Hàm tính giá topping
+    const calculateToppingPrice = (toppings) => {
+        if (!toppings || toppings.length === 0) return 0;
+
+        const toppingPrices = {
+            'tran-chau-den': 7000,
+            'thach-dua': 5000,
+            'pudding-trung': 6000,
+            'kem-cheese': 8000,
+            'thach-trai-cay': 5000,
+            'thach-dao': 5000
+        };
+
+        return toppings.reduce((total, topping) => {
+            return total + (toppingPrices[topping] || 0);
+        }, 0);
+    };
+
+    // Hàm tính tổng giá cho một item
+    const calculateItemTotal = (item) => {
+        const basePrice = item.price || 0;
+        const toppingPrice = calculateToppingPrice(item.options?.toppings);
+        return (basePrice + toppingPrice) * item.quantity;
+    };
+
+    // Hàm tính tổng giá giỏ hàng
+    const calculateCartTotal = () => {
+        return items.reduce((total, item) => {
+            return total + calculateItemTotal(item);
+        }, 0);
+    };
+
     const handleGoToCheckout = () => {
+        // Kiểm tra nếu chưa đăng nhập
+        if (!user) {
+            // Hiển thị thông báo đẹp hơn thay vì alert
+            const shouldLogin = window.confirm('Bạn cần đăng nhập để tiếp tục đặt hàng. Bạn có muốn đăng nhập ngay bây giờ không?');
+            if (shouldLogin) {
+                onClose(); // Đóng cart modal
+                setTimeout(() => setShowLogin(true), 300); // Mở modal đăng nhập sau khi đóng cart
+            }
+            return;
+        }
+
         onClose();
         setTimeout(() => navigate('/checkout'), 200); // Đợi modal đóng rồi mới chuyển trang
     };
@@ -186,7 +229,7 @@ export default function CartModal({ isOpen, onClose, user }) {
                                         {item.name}
                                     </h4>
                                     <p style={{ margin: 0, color: '#b8860b', fontWeight: 'bold', fontSize: '1.1rem' }}>
-                                        {formatPrice(item.price)}
+                                        {formatPrice(calculateItemTotal(item) / item.quantity)}
                                     </p>
                                 </div>
 
@@ -312,11 +355,25 @@ export default function CartModal({ isOpen, onClose, user }) {
                                 Tổng cộng:
                             </span>
                             <span style={{ fontSize: '1.3rem', fontWeight: 'bold', color: '#b8860b' }}>
-                                {formatPrice(getTotalPrice())}
+                                {formatPrice(calculateCartTotal())}
                             </span>
                         </div>
 
                         {/* Action Buttons */}
+                        {!user && (
+                            <div style={{
+                                background: '#fff3cd',
+                                border: '1px solid #ffeaa7',
+                                borderRadius: '8px',
+                                padding: '12px',
+                                marginBottom: '16px',
+                                color: '#856404',
+                                fontSize: '14px',
+                                textAlign: 'center'
+                            }}>
+                                ⚠️ Bạn cần đăng nhập để tiếp tục đặt hàng
+                            </div>
+                        )}
                         <div style={{ display: 'flex', gap: '12px' }}>
                             <button
                                 onClick={clearCart}
@@ -351,7 +408,9 @@ export default function CartModal({ isOpen, onClose, user }) {
                                     border: 'none',
                                     background: isCheckingOut
                                         ? '#ccc'
-                                        : 'linear-gradient(135deg, #b8860b, #e5d3b3)',
+                                        : !user
+                                            ? '#ff6b6b'
+                                            : 'linear-gradient(135deg, #b8860b, #e5d3b3)',
                                     color: '#fff',
                                     borderRadius: '8px',
                                     cursor: isCheckingOut ? 'not-allowed' : 'pointer',
@@ -372,7 +431,7 @@ export default function CartModal({ isOpen, onClose, user }) {
                                     }
                                 }}
                             >
-                                Đặt hàng ngay
+                                {!user ? 'Đăng nhập để đặt hàng' : 'Đặt hàng ngay'}
                             </button>
                         </div>
                     </div>

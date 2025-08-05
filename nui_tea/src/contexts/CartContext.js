@@ -99,7 +99,29 @@ export const CartProvider = ({ children }) => {
     };
 
     const getTotalPrice = () => {
-        return state.items.reduce((total, item) => total + (item.price * item.quantity), 0);
+        return state.items.reduce((total, item) => {
+            const basePrice = item.price || 0;
+            const toppingPrice = calculateToppingPrice(item.options?.toppings);
+            return total + (basePrice + toppingPrice) * item.quantity;
+        }, 0);
+    };
+
+    // Hàm tính giá topping
+    const calculateToppingPrice = (toppings) => {
+        if (!toppings || toppings.length === 0) return 0;
+
+        const toppingPrices = {
+            'tran-chau-den': 7000,
+            'thach-dua': 5000,
+            'pudding-trung': 6000,
+            'kem-cheese': 8000,
+            'thach-trai-cay': 5000,
+            'thach-dao': 5000
+        };
+
+        return toppings.reduce((total, topping) => {
+            return total + (toppingPrices[topping] || 0);
+        }, 0);
     };
 
     const value = {

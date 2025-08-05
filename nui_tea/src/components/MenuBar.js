@@ -54,10 +54,7 @@ function MenuBar({ user, setUser, setPage, onMenuScroll, setShowLogin, setShowCa
               message: `Đơn hàng #${order.orderNumber} - ${order.orderStatus}`
             }));
           setNotifications(newNotifications);
-          // Chỉ cập nhật allNotifications nếu có thông báo mới hoặc chưa có thông báo nào
-          if (newNotifications.length > 0 || allNotifications.length === 0) {
-            setAllNotifications(newNotifications);
-          }
+          setAllNotifications(newNotifications);
         }
       } catch (error) {
         console.error('Lỗi khi kiểm tra thông báo:', error);
@@ -68,7 +65,7 @@ function MenuBar({ user, setUser, setPage, onMenuScroll, setShowLogin, setShowCa
     const interval = setInterval(checkNotifications, 30000); // Kiểm tra mỗi 30 giây
 
     return () => clearInterval(interval);
-  }, [user, allNotifications]);
+  }, [user]); // Loại bỏ allNotifications khỏi dependency
 
   // Hàm helper để lấy màu cho trạng thái
   const getStatusColor = (status) => {
@@ -525,7 +522,16 @@ function MenuBar({ user, setUser, setPage, onMenuScroll, setShowLogin, setShowCa
                         const orderData = {
                           id: notification.id,
                           orderNumber: notification.orderNumber,
-                          orderStatus: notification.status
+                          orderStatus: notification.status,
+                          customerName: notification.customerName || 'N/A',
+                          phone: notification.phone || 'N/A',
+                          address: notification.address || 'N/A',
+                          items: notification.items || [],
+                          totalAmount: notification.totalAmount || 0,
+                          paymentMethod: notification.paymentMethod || 'N/A',
+                          paymentStatus: notification.paymentStatus || 'Chưa thanh toán',
+                          createdAt: notification.createdAt || new Date().toISOString(),
+                          estimatedDelivery: notification.estimatedDelivery || null
                         };
                         localStorage.setItem('currentOrder', JSON.stringify(orderData));
                         // Chuyển đến trang chi tiết đơn hàng

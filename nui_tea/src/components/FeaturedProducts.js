@@ -4,13 +4,20 @@ import ProductOptionModal from './ProductOptionModal';
 import { useCart } from '../contexts/CartContext';
 import { useNavigate } from 'react-router-dom';
 
-export default function FeaturedProducts({ products }) {
+export default function FeaturedProducts({ products, user, setShowLogin }) {
     const [showOption, setShowOption] = useState(false);
     const [selectedProduct, setSelectedProduct] = useState(null);
     const { addItem } = useCart();
     const navigate = useNavigate();
 
     const handleShowOption = (product) => {
+        // Kiểm tra nếu chưa đăng nhập
+        if (!user) {
+            alert('Vui lòng đăng nhập để đặt hàng!');
+            setShowLogin(true);
+            return;
+        }
+
         setSelectedProduct(product);
         setShowOption(true);
     };
