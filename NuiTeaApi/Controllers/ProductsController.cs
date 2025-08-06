@@ -21,27 +21,29 @@ namespace NuiTeaApi.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<object>> GetProducts()
         {
-            var products = _context.Products
-                .Include(p => p.Category)
-                .Select(p => new
-                {
-                    p.Id,
-                    p.Name,
-                    p.Price,
-                    p.Image,
-                    p.Description,
-                    p.IsActive,
-                    p.IsSoldOut,
-                    p.CreatedAt,
-                    Category = p.Category == null ? null : new
+            try
+            {
+                var products = _context.Products
+                    .Select(p => new
                     {
-                        p.Category.Id,
-                        p.Category.Name,
-                        p.Category.Description
-                    }
-                })
-                .ToList();
-            return Ok(products);
+                        p.Id,
+                        p.Name,
+                        p.Price,
+                        p.Image,
+                        p.Description,
+                        p.IsActive,
+                        p.IsSoldOut,
+                        p.CreatedAt,
+                        p.CategoryId
+                    })
+                    .ToList();
+                return Ok(products);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error in GetProducts: {ex.Message}");
+                return StatusCode(500, new { error = ex.Message });
+            }
         }
 
         [HttpPost]
