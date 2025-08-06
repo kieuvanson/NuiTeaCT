@@ -21,11 +21,17 @@ namespace NuiTeaApi.Models
         {
             base.OnModelCreating(modelBuilder);
 
-            // Map DbSet Products về bảng "products" (chữ thường)
+            // Map tất cả DbSet về bảng chữ thường
             modelBuilder.Entity<Product>().ToTable("products");
-            
-            // Map DbSet Customers về bảng "customers" (chữ thường)
+            modelBuilder.Entity<ProductCategory>().ToTable("productcategories");
+            modelBuilder.Entity<Coupon>().ToTable("coupons");
             modelBuilder.Entity<Customer>().ToTable("customers");
+            modelBuilder.Entity<Payment>().ToTable("payments");
+            modelBuilder.Entity<Order>().ToTable("orders");
+            modelBuilder.Entity<Material>().ToTable("materials");
+            modelBuilder.Entity<Income>().ToTable("incomes");
+            modelBuilder.Entity<Expense>().ToTable("expenses");
+            modelBuilder.Entity<FinancialReport>().ToTable("financialreports");
             
             // Cấu hình relationship giữa Product và ProductCategory
             modelBuilder.Entity<Product>()
