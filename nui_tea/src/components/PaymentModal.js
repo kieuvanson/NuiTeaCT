@@ -1,5 +1,6 @@
 /* eslint-disable */
 import React, { useState, useEffect } from 'react';
+import { API_BASE_URL } from '../config';
 
 function PaymentModal({ open, onClose, paymentMethod, amount, orderInfo, onPaymentSuccess }) {
     const [qrCode, setQrCode] = useState('');
@@ -17,7 +18,7 @@ function PaymentModal({ open, onClose, paymentMethod, amount, orderInfo, onPayme
 
     const generatePaymentQR = async () => {
         try {
-            const response = await fetch('http://localhost:5249/api/payments/create', {
+            const response = await fetch(`${API_BASE_URL}/payments/create`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
@@ -56,7 +57,7 @@ function PaymentModal({ open, onClose, paymentMethod, amount, orderInfo, onPayme
     const checkPaymentStatus = async () => {
         setIsChecking(true);
         try {
-            const response = await fetch(`http://localhost:5249/api/payments/${paymentId}/verify`, {
+            const response = await fetch(`${API_BASE_URL}/payments/${paymentId}/verify`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' }
             });

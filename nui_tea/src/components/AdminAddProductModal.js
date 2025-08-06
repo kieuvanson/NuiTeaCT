@@ -1,5 +1,6 @@
   import React, { useState, useEffect } from 'react';
 import './CartModal.css'; // Sử dụng style chung với CartModal
+import { API_BASE_URL } from '../config';
 
 function AdminAddProductModal({ open, onClose, onSuccess }) {
   const [name, setName] = useState('');
@@ -16,7 +17,7 @@ function AdminAddProductModal({ open, onClose, onSuccess }) {
   // Load danh sách categories khi mở modal
   useEffect(() => {
     if (open) {
-      fetch('http://localhost:5249/api/productcategories')
+      fetch(`${API_BASE_URL}/productcategories`)
         .then(res => res.json())
         .then(data => setCategories(data))
         .catch(err => console.error('Error loading categories:', err));
@@ -38,7 +39,7 @@ function AdminAddProductModal({ open, onClose, onSuccess }) {
       // Nếu tạo category mới
       else if (categoryName) {
         // Tạo category mới
-        const categoryRes = await fetch('http://localhost:5249/api/productcategories', {
+        const categoryRes = await fetch(`${API_BASE_URL}/productcategories`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
@@ -83,7 +84,7 @@ function AdminAddProductModal({ open, onClose, onSuccess }) {
       };
 
       // Gửi request tạo sản phẩm
-      const productRes = await fetch('http://localhost:5249/api/products', {
+      const productRes = await fetch(`${API_BASE_URL}/products`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(productData)

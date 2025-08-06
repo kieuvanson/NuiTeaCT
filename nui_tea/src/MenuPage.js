@@ -5,6 +5,7 @@ import LoginModal from './components/LoginModal';
 import CartModal from './components/CartModal';
 import ProductOptionModal from './components/ProductOptionModal';
 import { useCart } from './contexts/CartContext';
+import { API_BASE_URL } from './config';
 
 function MenuPage() {
     const [user, setUser] = useState(() => {
@@ -30,10 +31,10 @@ function MenuPage() {
     const { addItem } = useCart();
 
     useEffect(() => {
-        fetch('http://localhost:5249/api/productcategories')
+        fetch(`${API_BASE_URL}/productcategories`)
             .then(res => res.json())
             .then(data => setCategories(data));
-        fetch('http://localhost:5249/api/products')
+        fetch(`${API_BASE_URL}/products`)
             .then(res => res.json())
             .then(data => {
                 console.log('Products loaded:', data);
@@ -428,7 +429,7 @@ function RegisterModal({ onClose, onLogin }) {
         setLoading(true);
         setError('');
         try {
-            const res = await fetch('http://localhost:5249/api/customers/register', {
+            const res = await fetch(`${API_BASE_URL}/customers/register`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({

@@ -21,6 +21,7 @@ import OrderStatusPage from './OrderStatusPage';
 import AdminOrderManagement from './components/AdminOrderManagement';
 import FinancialDashboard from './components/FinancialDashboard';
 import ExpiryWarningModal from './components/ExpiryWarningModal';
+import { API_BASE_URL } from './config';
 
 const bannerImage = 'https://tocotocotea.com/wp-content/uploads/2025/06/banner-web.jpg';
 
@@ -321,7 +322,7 @@ function AdminPage() {
   // Hàm toggle Sold Out
   const toggleSoldOut = async (productId) => {
     try {
-      const response = await fetch(`http://localhost:5249/api/products/${productId}/toggle-soldout`, {
+      const response = await fetch(`${API_BASE_URL}/api/products/${productId}/toggle-soldout`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' }
       });
@@ -329,7 +330,7 @@ function AdminPage() {
       if (response.ok) {
         // Cập nhật lại danh sách sản phẩm
         setLoading(true);
-        fetch('http://localhost:5249/api/products')
+        fetch(`${API_BASE_URL}/api/products`)
           .then(res => res.json())
           .then(data => {
             setProducts(data);
@@ -347,7 +348,7 @@ function AdminPage() {
   // Hàm toggle trạng thái tài khoản
   const toggleAccountStatus = async (accountId) => {
     try {
-      const response = await fetch(`http://localhost:5249/api/customers/${accountId}/toggle-status`, {
+      const response = await fetch(`${API_BASE_URL}/api/customers/${accountId}/toggle-status`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' }
       });
@@ -355,7 +356,7 @@ function AdminPage() {
       if (response.ok) {
         // Cập nhật lại danh sách tài khoản
         setAccountsLoading(true);
-        fetch('http://localhost:5249/api/customers')
+        fetch(`${API_BASE_URL}/api/customers`)
           .then(res => res.json())
           .then(data => {
             setAccounts(data);
@@ -377,7 +378,7 @@ function AdminPage() {
     }
 
     try {
-      const response = await fetch(`http://localhost:5249/api/customers/${accountId}`, {
+      const response = await fetch(`${API_BASE_URL}/api/customers/${accountId}`, {
         method: 'DELETE',
         headers: { 'Content-Type': 'application/json' }
       });
@@ -385,7 +386,7 @@ function AdminPage() {
       if (response.ok) {
         // Cập nhật lại danh sách tài khoản
         setAccountsLoading(true);
-        fetch('http://localhost:5249/api/customers')
+        fetch(`${API_BASE_URL}/api/customers`)
           .then(res => res.json())
           .then(data => {
             setAccounts(data);
@@ -403,7 +404,7 @@ function AdminPage() {
   // Hàm nhập kho nguyên vật liệu
   const importMaterial = async (materialId, quantity) => {
     try {
-      const response = await fetch(`http://localhost:5249/api/materials/${materialId}/import`, {
+      const response = await fetch(`${API_BASE_URL}/api/materials/${materialId}/import`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ quantity })
@@ -412,7 +413,7 @@ function AdminPage() {
       if (response.ok) {
         // Cập nhật lại danh sách nguyên vật liệu
         setMaterialsLoading(true);
-        fetch('http://localhost:5249/api/materials')
+        fetch(`${API_BASE_URL}/api/materials`)
           .then(res => res.json())
           .then(data => {
             setMaterials(Array.isArray(data) ? data : []);
@@ -430,7 +431,7 @@ function AdminPage() {
   // Hàm xuất kho nguyên vật liệu
   const exportMaterial = async (materialId, quantity) => {
     try {
-      const response = await fetch(`http://localhost:5249/api/materials/${materialId}/export`, {
+      const response = await fetch(`${API_BASE_URL}/api/materials/${materialId}/export`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ quantity })
@@ -439,7 +440,7 @@ function AdminPage() {
       if (response.ok) {
         // Cập nhật lại danh sách nguyên vật liệu
         setMaterialsLoading(true);
-        fetch('http://localhost:5249/api/materials')
+        fetch(`${API_BASE_URL}/api/materials`)
           .then(res => res.json())
           .then(data => {
             setMaterials(Array.isArray(data) ? data : []);
@@ -461,7 +462,7 @@ function AdminPage() {
     }
 
     try {
-      const response = await fetch(`http://localhost:5249/api/materials/${materialId}`, {
+      const response = await fetch(`${API_BASE_URL}/api/materials/${materialId}`, {
         method: 'DELETE',
         headers: { 'Content-Type': 'application/json' }
       });
@@ -469,7 +470,7 @@ function AdminPage() {
       if (response.ok) {
         // Cập nhật lại danh sách nguyên vật liệu
         setMaterialsLoading(true);
-        fetch('http://localhost:5249/api/materials')
+        fetch(`${API_BASE_URL}/api/materials`)
           .then(res => res.json())
           .then(data => {
             setMaterials(Array.isArray(data) ? data : []);
@@ -488,7 +489,7 @@ function AdminPage() {
   const fetchVouchers = async () => {
     try {
       setVouchersLoading(true);
-      const response = await fetch('http://localhost:5249/api/coupons');
+      const response = await fetch(`${API_BASE_URL}/api/coupons`);
       if (response.ok) {
         const data = await response.json();
         setVouchers(Array.isArray(data) ? data : []);
@@ -504,7 +505,7 @@ function AdminPage() {
 
   const addVoucher = async (voucherData) => {
     try {
-      const response = await fetch('http://localhost:5249/api/coupons', {
+      const response = await fetch(`${API_BASE_URL}/api/coupons`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(voucherData)
@@ -525,7 +526,7 @@ function AdminPage() {
 
   const updateVoucher = async (voucherId, voucherData) => {
     try {
-      const response = await fetch(`http://localhost:5249/api/coupons/${voucherId}`, {
+      const response = await fetch(`${API_BASE_URL}/api/coupons/${voucherId}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(voucherData)
@@ -548,7 +549,7 @@ function AdminPage() {
     if (!window.confirm('Bạn có chắc chắn muốn xóa voucher này?')) return;
 
     try {
-      const response = await fetch(`http://localhost:5249/api/coupons/${voucherId}`, {
+      const response = await fetch(`${API_BASE_URL}/api/coupons/${voucherId}`, {
         method: 'DELETE',
         headers: { 'Content-Type': 'application/json' }
       });
@@ -566,7 +567,7 @@ function AdminPage() {
   useEffect(() => {
     if (tab === 'products') {
       setLoading(true);
-      fetch('http://localhost:5249/api/products')
+      fetch(`${API_BASE_URL}/api/products`)
         .then(res => res.json())
         .then(data => {
           setProducts(data);
@@ -578,7 +579,7 @@ function AdminPage() {
         });
     } else if (tab === 'accounts') {
       setAccountsLoading(true);
-      fetch('http://localhost:5249/api/customers')
+      fetch(`${API_BASE_URL}/api/customers`)
         .then(res => res.json())
         .then(data => {
           setAccounts(data);
@@ -590,7 +591,7 @@ function AdminPage() {
         });
     } else if (tab === 'materials') {
       setMaterialsLoading(true);
-      fetch('http://localhost:5249/api/materials')
+      fetch(`${API_BASE_URL}/api/materials`)
         .then(res => res.json())
         .then(data => {
           setMaterials(Array.isArray(data) ? data : []);
@@ -602,7 +603,7 @@ function AdminPage() {
         });
 
       // Luôn lấy thông báo admin khi chuyển tab
-      fetch('http://localhost:5249/api/adminnotifications/materials')
+      fetch(`${API_BASE_URL}/api/adminnotifications/materials`)
         .then(res => res.json())
         .then(data => {
           console.log('AdminNotifications response:', data);
@@ -614,7 +615,7 @@ function AdminPage() {
         });
 
       // Lấy thống kê dashboard
-      fetch('http://localhost:5249/api/adminnotifications/dashboard-stats')
+      fetch(`${API_BASE_URL}/api/adminnotifications/dashboard-stats`)
         .then(res => res.json())
         .then(data => {
           setDashboardStats(data);
@@ -628,7 +629,7 @@ function AdminPage() {
   }, [tab]);
 
   useEffect(() => {
-    fetch('http://localhost:5249/api/productcategories')
+    fetch(`${API_BASE_URL}/api/productcategories`)
       .then(res => res.json())
       .then(data => setCategories(data))
       .catch(() => setCategories([]));
@@ -1048,7 +1049,7 @@ function AdminPage() {
                 <AdminAddProductModal open={showAdd} onClose={() => setShowAdd(false)} onSuccess={() => {
                   setShowAdd(false);
                   setLoading(true);
-                  fetch('http://localhost:5249/api/products')
+                  fetch(`${API_BASE_URL}/api/products`)
                     .then(res => res.json())
                     .then(data => {
                       setProducts(data);
@@ -2137,7 +2138,7 @@ function AdminPage() {
         onSuccess={() => {
           setShowEdit(false);
           setLoading(true);
-          fetch('http://localhost:5249/api/products')
+          fetch(`${API_BASE_URL}/api/products`)
             .then(res => res.json())
             .then(data => {
               setProducts(data);
@@ -2152,10 +2153,10 @@ function AdminPage() {
         product={deleteProduct}
         onDelete={async (product) => {
           try {
-            await fetch(`http://localhost:5249/api/products/${product.id}`, { method: 'DELETE' });
+            await fetch(`${API_BASE_URL}/api/products/${product.id}`, { method: 'DELETE' });
             setShowDelete(false);
             setLoading(true);
-            fetch('http://localhost:5249/api/products')
+            fetch(`${API_BASE_URL}/api/products`)
               .then(res => res.json())
               .then(data => {
                 setProducts(data);
@@ -2386,7 +2387,7 @@ function AdminPage() {
         onSuccess={() => {
           // Refresh materials list
           setMaterialsLoading(true);
-          fetch('http://localhost:5249/api/materials')
+          fetch(`${API_BASE_URL}/api/materials`)
             .then(res => res.json())
             .then(data => {
               setMaterials(Array.isArray(data) ? data : []);
@@ -2488,7 +2489,7 @@ function RegisterModal({ onClose, onLogin }) {
     }
     setLoading(true);
     try {
-      const res = await fetch('http://localhost:5249/api/customers/register', {
+      const res = await fetch(`${API_BASE_URL}/api/customers/register`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -2620,7 +2621,7 @@ function ProductSection({ user, setShowLogin }) {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:5249/api/products')
+    fetch(`${API_BASE_URL}/api/products`)
       .then(res => res.json())
       .then(data => setProducts(data))
       .catch(error => {
@@ -2733,7 +2734,7 @@ export default App;
 function PromotionsSection({ promoRef }) {
   const [promos, setPromos] = useState([]);
   useEffect(() => {
-    fetch('http://localhost:5249/api/coupons/active')
+    fetch(`${API_BASE_URL}/api/coupons/active`)
       .then(res => res.json())
       .then(data => setPromos(data));
   }, []);
@@ -3092,7 +3093,7 @@ function ProfilePage({ user, setUser, setPage }) {
     setSuccess(''); setError('');
     setLoading(true);
     try {
-      const res = await fetch('http://localhost:5249/api/customers/update', {
+      const res = await fetch(`${API_BASE_URL}/api/customers/update`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -3155,7 +3156,7 @@ function AdminAddProductModal({ open, onClose, onSuccess }) {
 
   useEffect(() => {
     if (open) {
-      fetch('http://localhost:5249/api/productcategories')
+      fetch(`${API_BASE_URL}/api/productcategories`)
         .then(res => res.json())
         .then(data => setCategories(data))
         .catch(() => setCategories([]));
@@ -3189,7 +3190,7 @@ function AdminAddProductModal({ open, onClose, onSuccess }) {
       };
       console.log('Sending product data:', productData);
 
-      const res = await fetch('http://localhost:5249/api/products', {
+      const res = await fetch(`${API_BASE_URL}/api/products`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(productData)
@@ -3270,7 +3271,7 @@ function AddMaterialModal({ open, onClose, onSuccess }) {
     setError('');
 
     try {
-      const response = await fetch('http://localhost:5249/api/materials', {
+      const response = await fetch(`${API_BASE_URL}/api/materials`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -3594,7 +3595,7 @@ function AddVoucherModal({ open, onClose, onSuccess }) {
     setError('');
 
     try {
-      const response = await fetch('http://localhost:5249/api/coupons', {
+      const response = await fetch(`${API_BASE_URL}/api/coupons`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -3873,7 +3874,7 @@ function EditVoucherModal({ open, onClose, voucher, onSuccess }) {
     setError('');
 
     try {
-      const response = await fetch(`http://localhost:5249/api/coupons/${voucher.id}`, {
+      const response = await fetch(`${API_BASE_URL}/api/coupons/${voucher.id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

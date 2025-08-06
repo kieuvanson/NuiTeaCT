@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { API_BASE_URL } from '../config';
 
 function AdminEditProductModal({ open, onClose, product, categories, onSuccess }) {
     const [name, setName] = useState('');
@@ -39,7 +40,7 @@ function AdminEditProductModal({ open, onClose, product, categories, onSuccess }
                 IsSoldOut: isSoldOut,
                 CreatedAt: product.createdAt || new Date().toISOString()
             };
-            const res = await fetch(`http://localhost:5249/api/products/${product.id}`, {
+            const res = await fetch(`${API_BASE_URL}/products/${product.id}`, {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(productData)

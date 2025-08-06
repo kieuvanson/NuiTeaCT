@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import MenuBar from './components/MenuBar';
+import { API_BASE_URL } from './config';
 
 export default function OrderStatusPage({ user, setUser, setPage, onMenuScroll, setShowLogin, setShowCart }) {
     const { orderId } = useParams();
@@ -48,7 +49,7 @@ export default function OrderStatusPage({ user, setUser, setPage, onMenuScroll, 
     const fetchOrderFromAPI = async (orderId) => {
         try {
             console.log('Fetching order from API:', orderId);
-            const response = await fetch(`http://localhost:5249/api/orders/${orderId}`);
+            const response = await fetch(`${API_BASE_URL}/orders/${orderId}`);
 
             if (response.ok) {
                 const orderData = await response.json();

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import CartIcon from './CartIcon';
 import OrderHistory from './OrderHistory';
+import { API_BASE_URL } from '../config';
 
 function MenuBar({ user, setUser, setPage, onMenuScroll, setShowLogin, setShowCart }) {
   const [userMenuOpen, setUserMenuOpen] = useState(false);
@@ -42,7 +43,7 @@ function MenuBar({ user, setUser, setPage, onMenuScroll, setShowLogin, setShowCa
       }
 
       try {
-        const response = await fetch(`http://localhost:5249/api/orders?customerEmail=${encodeURIComponent(user.email)}`);
+        const response = await fetch(`${API_BASE_URL}/orders?customerEmail=${encodeURIComponent(user.email)}`);
         if (response.ok) {
           const orders = await response.json();
           const newNotifications = orders

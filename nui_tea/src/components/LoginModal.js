@@ -1,6 +1,7 @@
 /* eslint-disable */
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { API_BASE_URL } from '../config';
 
 function LoginModal({ onClose, onRegister, onForgot, onLoginSuccess }) {
     const [email, setEmail] = useState('');
@@ -17,7 +18,7 @@ function LoginModal({ onClose, onRegister, onForgot, onLoginSuccess }) {
         setSuccess('');
         setLoading(true);
         try {
-            let url = 'http://localhost:5249/api/customers/login';
+            let url = `${API_BASE_URL}/customers/login`;
             const res = await fetch(url, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },

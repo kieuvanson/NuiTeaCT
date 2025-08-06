@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { useCart } from './contexts/CartContext';
 import { useNavigate } from 'react-router-dom';
 import PaymentModal from './components/PaymentModal';
+import { API_BASE_URL } from './config';
 
 export default function CheckoutPage() {
     const { items, getTotalPrice, clearCart } = useCart();
@@ -27,7 +28,7 @@ export default function CheckoutPage() {
     });
 
     useEffect(() => {
-        fetch('http://localhost:5249/api/coupons/active')
+        fetch(`${API_BASE_URL}/coupons/active`)
             .then(res => res.json())
             .then(data => setCoupons(data))
             .catch(() => setCoupons([]));
@@ -159,7 +160,7 @@ export default function CheckoutPage() {
             console.log('Sending order data:', orderData);
 
             // Gửi đơn hàng lên server
-            const response = await fetch('http://localhost:5249/api/orders', {
+            const response = await fetch(`${API_BASE_URL}/orders`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

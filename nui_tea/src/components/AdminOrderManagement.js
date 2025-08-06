@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { API_BASE_URL } from '../config';
 
 export default function AdminOrderManagement() {
     const [orders, setOrders] = useState([]);
@@ -14,7 +15,7 @@ export default function AdminOrderManagement() {
     const fetchOrders = async () => {
         try {
             setLoading(true);
-            const response = await fetch('http://localhost:5249/api/orders');
+            const response = await fetch(`${API_BASE_URL}/orders`);
             if (!response.ok) {
                 throw new Error('Lỗi khi tải danh sách đơn hàng');
             }
@@ -30,7 +31,7 @@ export default function AdminOrderManagement() {
 
     const updateOrderStatus = async (orderId, newStatus) => {
         try {
-            const response = await fetch(`http://localhost:5249/api/orders/${orderId}/status`, {
+            const response = await fetch(`${API_BASE_URL}/orders/${orderId}/status`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -52,7 +53,7 @@ export default function AdminOrderManagement() {
 
     const updatePaymentStatus = async (orderId, newStatus) => {
         try {
-            const response = await fetch(`http://localhost:5249/api/orders/${orderId}/payment-status`, {
+            const response = await fetch(`${API_BASE_URL}/orders/${orderId}/payment-status`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -78,7 +79,7 @@ export default function AdminOrderManagement() {
         }
 
         try {
-            const response = await fetch(`http://localhost:5249/api/orders/${orderId}`, {
+            const response = await fetch(`${API_BASE_URL}/orders/${orderId}`, {
                 method: 'DELETE'
             });
 
