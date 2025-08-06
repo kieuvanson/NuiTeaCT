@@ -2952,6 +2952,24 @@ html {
     overflow: hidden;
     text-overflow: ellipsis;
   }
+
+  .order-btn {
+    font-size: 0.9rem;
+    padding: 10px 20px;
+    margin-top: 8px;
+    width: 100%;
+    max-width: 100%;
+    border-radius: 15px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    box-shadow: 0 4px 15px rgba(184, 134, 11, 0.3);
+  }
+
+  .order-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(184, 134, 11, 0.4);
+  }
 }
 
 @keyframes pulse {
