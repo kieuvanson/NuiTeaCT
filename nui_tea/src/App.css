@@ -851,6 +851,7 @@ html {
 .product-card {
   width: 280px;
   min-height: 550px;
+  height: auto;
   display: flex;
   flex-direction: column;
   background: #ffffff;
@@ -914,18 +915,18 @@ html {
   padding: 25px 20px;
   background: #ffffff;
   text-align: center;
-  min-height: 320px;
+  min-height: auto;
+  height: auto;
 }
 
 .product-desc {
-  min-height: 60px;
+  min-height: auto;
+  height: auto;
   margin-bottom: 15px;
   text-align: center;
-  display: -webkit-box;
-  -webkit-line-clamp: 4;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  display: block;
+  overflow: visible;
+  text-overflow: unset;
 }
 
 .product-price {
@@ -997,14 +998,13 @@ html {
   letter-spacing: 0.3px;
   text-align: center;
   width: 100%;
-  min-height: 60px;
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  align-items: center;
-  justify-content: center;
+  height: auto;
+  min-height: auto;
+  display: block;
+  overflow: visible;
+  text-overflow: unset;
+  align-items: unset;
+  justify-content: unset;
 }
 
 .product-desc {
@@ -1016,12 +1016,11 @@ html {
   font-weight: 400;
   text-align: center;
   width: 100%;
-  min-height: 80px;
-  display: -webkit-box;
-  -webkit-line-clamp: 4;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  height: auto;
+  min-height: auto;
+  display: block;
+  overflow: visible;
+  text-overflow: unset;
 }
 
 .menu-section {
@@ -2943,25 +2942,21 @@ html {
   .product-name {
     font-size: 1.2rem;
     height: auto;
-    min-height: 50px;
+    min-height: auto;
     margin-bottom: 10px;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    display: block;
+    overflow: visible;
+    text-overflow: unset;
   }
 
   .product-desc {
     font-size: 0.9rem;
     height: auto;
-    min-height: 70px;
+    min-height: auto;
     margin-bottom: 15px;
-    display: -webkit-box;
-    -webkit-line-clamp: 4;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    display: block;
+    overflow: visible;
+    text-overflow: unset;
   }
 
   .order-btn {
@@ -2986,7 +2981,8 @@ html {
 
   .product-info {
     padding: 15px 12px;
-    min-height: 260px;
+    min-height: auto;
+    height: auto;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -2997,6 +2993,7 @@ html {
     width: 100%;
     max-width: 300px;
     min-height: 480px;
+    height: auto;
     margin-bottom: 20px;
   }
 }
