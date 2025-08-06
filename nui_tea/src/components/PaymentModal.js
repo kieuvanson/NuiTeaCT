@@ -18,7 +18,7 @@ function PaymentModal({ open, onClose, paymentMethod, amount, orderInfo, onPayme
 
     const generatePaymentQR = async () => {
         try {
-            const response = await fetch(`${API_BASE_URL}/payments/create`, {
+            const response = await fetch(`${API_BASE_URL}/api/payments/create`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
@@ -57,7 +57,7 @@ function PaymentModal({ open, onClose, paymentMethod, amount, orderInfo, onPayme
     const checkPaymentStatus = async () => {
         setIsChecking(true);
         try {
-            const response = await fetch(`${API_BASE_URL}/payments/${paymentId}/verify`, {
+            const response = await fetch(`${API_BASE_URL}/api/payments/${paymentId}/verify`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' }
             });
