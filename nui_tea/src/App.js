@@ -3033,35 +3033,7 @@ function PromotionsSection({ promoRef }) {
         </div>
         )}
 
-        {/* Call to action */}
-        <div style={{
-          textAlign: 'center',
-          marginTop: '40px'
-        }}>
-          <button style={{
-            background: 'linear-gradient(135deg, #b8860b, #e5d3b3)',
-            color: '#fff',
-            border: 'none',
-            borderRadius: '50px',
-            padding: '16px 40px',
-            fontSize: '18px',
-            fontWeight: 700,
-            cursor: 'pointer',
-            boxShadow: '0 8px 24px rgba(184, 134, 11, 0.3)',
-            transition: 'all 0.3s ease'
-          }}
-            onMouseEnter={(e) => {
-              e.target.style.transform = 'translateY(-2px)';
-              e.target.style.boxShadow = '0 12px 32px rgba(184, 134, 11, 0.4)';
-            }}
-            onMouseLeave={(e) => {
-              e.target.style.transform = 'translateY(0)';
-              e.target.style.boxShadow = '0 8px 24px rgba(184, 134, 11, 0.3)';
-            }}
-          >
-            🛒 Xem tất cả sản phẩm
-          </button>
-      </div>
+
       </div>
 
       <style>{`
