@@ -43,7 +43,7 @@ function MenuBar({ user, setUser, setPage, onMenuScroll, setShowLogin, setShowCa
       }
 
       try {
-        const response = await fetch(`${API_BASE_URL}/orders?customerEmail=${encodeURIComponent(user.email)}`);
+                    const response = await fetch(`${API_BASE_URL}/api/orders?customerEmail=${encodeURIComponent(user.email)}`);
         if (response.ok) {
           const orders = await response.json();
           const newNotifications = orders

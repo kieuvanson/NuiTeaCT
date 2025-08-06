@@ -160,7 +160,7 @@ export default function CheckoutPage() {
             console.log('Sending order data:', orderData);
 
             // Gửi đơn hàng lên server
-            const response = await fetch(`${API_BASE_URL}/orders`, {
+            const response = await fetch(`${API_BASE_URL}/api/orders`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

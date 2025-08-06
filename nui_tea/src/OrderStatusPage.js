@@ -49,7 +49,7 @@ export default function OrderStatusPage({ user, setUser, setPage, onMenuScroll, 
     const fetchOrderFromAPI = async (orderId) => {
         try {
             console.log('Fetching order from API:', orderId);
-            const response = await fetch(`${API_BASE_URL}/orders/${orderId}`);
+            const response = await fetch(`${API_BASE_URL}/api/orders/${orderId}`);
 
             if (response.ok) {
                 const orderData = await response.json();

@@ -21,7 +21,7 @@ const OrderHistory = ({ isOpen, onClose, user }) => {
 
         setLoading(true);
         try {
-            const response = await fetch(`${API_BASE_URL}/orders?customerEmail=${encodeURIComponent(user.email)}`);
+            const response = await fetch(`${API_BASE_URL}/api/orders?customerEmail=${encodeURIComponent(user.email)}`);
             if (response.ok) {
                 const data = await response.json();
                 setOrders(data);

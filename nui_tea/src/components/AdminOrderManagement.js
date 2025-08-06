@@ -15,7 +15,7 @@ export default function AdminOrderManagement() {
     const fetchOrders = async () => {
         try {
             setLoading(true);
-            const response = await fetch(`${API_BASE_URL}/orders`);
+            const response = await fetch(`${API_BASE_URL}/api/orders`);
             if (!response.ok) {
                 throw new Error('Lỗi khi tải danh sách đơn hàng');
             }
@@ -31,7 +31,7 @@ export default function AdminOrderManagement() {
 
     const updateOrderStatus = async (orderId, newStatus) => {
         try {
-            const response = await fetch(`${API_BASE_URL}/orders/${orderId}/status`, {
+            const response = await fetch(`${API_BASE_URL}/api/orders/${orderId}/status`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -53,7 +53,7 @@ export default function AdminOrderManagement() {
 
     const updatePaymentStatus = async (orderId, newStatus) => {
         try {
-            const response = await fetch(`${API_BASE_URL}/orders/${orderId}/payment-status`, {
+            const response = await fetch(`${API_BASE_URL}/api/orders/${orderId}/payment-status`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -79,7 +79,7 @@ export default function AdminOrderManagement() {
         }
 
         try {
-            const response = await fetch(`${API_BASE_URL}/orders/${orderId}`, {
+            const response = await fetch(`${API_BASE_URL}/api/orders/${orderId}`, {
                 method: 'DELETE'
             });
 
