@@ -3,7 +3,7 @@ services:
     name: nui-tea-api
     env: docker
     plan: free
-    dockerfilePath: ./Dockerfile
+    dockerfilePath: Dockerfile
     envVars:
       - key: ASPNETCORE_ENVIRONMENT
         value: Production
