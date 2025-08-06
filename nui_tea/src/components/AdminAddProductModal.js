@@ -84,7 +84,7 @@ function AdminAddProductModal({ open, onClose, onSuccess }) {
       };
 
       // Gửi request tạo sản phẩm
-      const productRes = await fetch(`${API_BASE_URL}/products`, {
+                  const productRes = await fetch(`${API_BASE_URL}/api/products`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(productData)

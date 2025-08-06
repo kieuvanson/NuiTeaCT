@@ -31,10 +31,10 @@ function MenuPage() {
     const { addItem } = useCart();
 
     useEffect(() => {
-        fetch(`${API_BASE_URL}/productcategories`)
+        fetch(`${API_BASE_URL}/api/productcategories`)
             .then(res => res.json())
             .then(data => setCategories(data));
-        fetch(`${API_BASE_URL}/products`)
+        fetch(`${API_BASE_URL}/api/products`)
             .then(res => res.json())
             .then(data => {
                 console.log('Products loaded:', data);
