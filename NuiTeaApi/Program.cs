@@ -23,9 +23,9 @@ builder.Services.AddControllers();
 
 var app = builder.Build();
 
-// // Cấu hình port cho Render
-// var port = Environment.GetEnvironmentVariable("PORT") ?? "5249";
-// app.Urls.Add($"http://0.0.0.0:{port}");
+// Cấu hình port cho Render
+var port = Environment.GetEnvironmentVariable("PORT") ?? "5249";
+app.Urls.Add($"http://0.0.0.0:{port}");
 
 app.UseCors("AllowAll");
 app.UseAuthorization();
