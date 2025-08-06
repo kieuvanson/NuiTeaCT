@@ -17,7 +17,7 @@ const FinancialDashboard = () => {
 
     const syncIncomesFromCompletedOrders = async () => {
         try {
-            const response = await fetch(`${API_BASE_URL}/FinancialReports/sync-incomes`, {
+            const response = await fetch(`${API_BASE_URL}/api/FinancialReports/sync-incomes`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -49,7 +49,7 @@ const FinancialDashboard = () => {
             const startDate = new Date();
             startDate.setDate(startDate.getDate() - parseInt(dateRange));
 
-            const url = `${API_BASE_URL}/FinancialReports/dashboard?startDate=${startDate.toISOString()}&endDate=${endDate.toISOString()}`;
+            const url = `${API_BASE_URL}/api/FinancialReports/dashboard?startDate=${startDate.toISOString()}&endDate=${endDate.toISOString()}`;
 
             const response = await fetch(url);
 
