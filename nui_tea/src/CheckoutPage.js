@@ -28,7 +28,7 @@ export default function CheckoutPage() {
     });
 
     useEffect(() => {
-        fetch(`${API_BASE_URL}/coupons/active`)
+        fetch(`${API_BASE_URL}/api/coupons/active`)
             .then(res => res.json())
             .then(data => setCoupons(data))
             .catch(() => setCoupons([]));
