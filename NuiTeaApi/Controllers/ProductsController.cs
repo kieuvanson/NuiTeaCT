@@ -109,6 +109,26 @@ namespace NuiTeaApi.Controllers
             });
         }
 
+        [HttpDelete("{id}")]
+        public IActionResult DeleteProduct(int id)
+        {
+            try
+            {
+                var product = _context.Products.FirstOrDefault(p => p.Id == id);
+                if (product == null)
+                    return NotFound(new { message = "Không tìm thấy sản phẩm." });
+
+                _context.Products.Remove(product);
+                _context.SaveChanges();
+                
+                return Ok(new { message = "Xóa sản phẩm thành công." });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = "Lỗi khi xóa sản phẩm: " + ex.Message });
+            }
+        }
+
         public class CreateProductDto
         {
             public string Name { get; set; }
