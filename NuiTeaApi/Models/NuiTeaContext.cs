@@ -20,6 +20,9 @@ namespace NuiTeaApi.Models
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
+            // Map DbSet Products về bảng "products" (chữ thường)
+            modelBuilder.Entity<Product>().ToTable("products");
             
             // Cấu hình relationship giữa Product và ProductCategory
             modelBuilder.Entity<Product>()
