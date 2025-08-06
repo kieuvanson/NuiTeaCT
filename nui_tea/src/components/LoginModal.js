@@ -18,7 +18,7 @@ function LoginModal({ onClose, onRegister, onForgot, onLoginSuccess }) {
         setSuccess('');
         setLoading(true);
         try {
-            let url = `${API_BASE_URL}/customers/login`;
+            let url = `${API_BASE_URL}/api/customers/login`;
             const res = await fetch(url, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
