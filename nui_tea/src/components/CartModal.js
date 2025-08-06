@@ -123,33 +123,31 @@ export default function CartModal({ isOpen, onClose, user, setShowLogin }) {
                                 setShowOrderHistory(true);
                             }}
                             style={{
-                                background: 'rgba(255, 255, 255, 0.9)',
-                                border: '2px solid rgba(255, 255, 255, 0.8)',
-                                color: '#b8860b',
-                                fontSize: '14px',
+                                background: 'rgba(255, 255, 255, 0.15)',
+                                border: '1px solid rgba(255, 255, 255, 0.3)',
+                                color: '#fff',
+                                fontSize: '11px',
                                 cursor: 'pointer',
-                                padding: '8px 16px',
-                                borderRadius: '25px',
-                                fontWeight: '700',
-                                transition: 'all 0.3s ease',
-                                boxShadow: '0 2px 8px rgba(0, 0, 0, 0.2)',
-                                textTransform: 'uppercase',
-                                letterSpacing: '0.5px'
+                                padding: '4px 8px',
+                                borderRadius: '12px',
+                                fontWeight: '500',
+                                transition: 'all 0.2s ease',
+                                textTransform: 'none',
+                                letterSpacing: '0.2px',
+                                opacity: 0.9
                             }}
                             onMouseEnter={(e) => {
-                                e.target.style.background = '#fff';
-                                e.target.style.color = '#8B4513';
-                                e.target.style.transform = 'translateY(-2px)';
-                                e.target.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.3)';
+                                e.target.style.background = 'rgba(255, 255, 255, 0.25)';
+                                e.target.style.border = '1px solid rgba(255, 255, 255, 0.5)';
+                                e.target.style.opacity = '1';
                             }}
                             onMouseLeave={(e) => {
-                                e.target.style.background = 'rgba(255, 255, 255, 0.9)';
-                                e.target.style.color = '#b8860b';
-                                e.target.style.transform = 'translateY(0)';
-                                e.target.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.2)';
+                                e.target.style.background = 'rgba(255, 255, 255, 0.15)';
+                                e.target.style.border = '1px solid rgba(255, 255, 255, 0.3)';
+                                e.target.style.opacity = '0.9';
                             }}
                         >
-                            📋 Lịch sử đơn hàng
+                            📋 Lịch sử
                         </button>
                     </div>
                     <button
