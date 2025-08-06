@@ -24,6 +24,9 @@ namespace NuiTeaApi.Models
             // Map DbSet Products về bảng "products" (chữ thường)
             modelBuilder.Entity<Product>().ToTable("products");
             
+            // Map DbSet Customers về bảng "customers" (chữ thường)
+            modelBuilder.Entity<Customer>().ToTable("customers");
+            
             // Cấu hình relationship giữa Product và ProductCategory
             modelBuilder.Entity<Product>()
                 .HasOne(p => p.Category)
