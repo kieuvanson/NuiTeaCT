@@ -7,6 +7,7 @@ namespace NuiTeaApi.Models
         public NuiTeaContext(DbContextOptions<NuiTeaContext> options) : base(options) { }
 
         public DbSet<Product> Products { get; set; }
+        public DbSet<ProductCategory> ProductCategories { get; set; }
         public DbSet<Coupon> Coupons { get; set; }
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Payment> Payments { get; set; }
@@ -19,6 +20,13 @@ namespace NuiTeaApi.Models
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+            
+            // Cấu hình relationship giữa Product và ProductCategory
+            modelBuilder.Entity<Product>()
+                .HasOne(p => p.Category)
+                .WithMany(c => c.Products)
+                .HasForeignKey(p => p.CategoryId);
+            
             modelBuilder.Entity<Coupon>().HasData(
                 new Coupon
                 {
