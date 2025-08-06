@@ -40,7 +40,7 @@ function AdminEditProductModal({ open, onClose, product, categories, onSuccess }
                 IsSoldOut: isSoldOut,
                 CreatedAt: product.createdAt || new Date().toISOString()
             };
-            const res = await fetch(`${API_BASE_URL}/products/${product.id}`, {
+            const res = await fetch(`${API_BASE_URL}/api/products/${product.id}`, {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(productData)
