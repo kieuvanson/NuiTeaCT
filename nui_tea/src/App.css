@@ -914,13 +914,18 @@ html {
   padding: 25px 20px;
   background: #ffffff;
   text-align: center;
-  min-height: 280px;
+  min-height: 320px;
 }
 
 .product-desc {
-  min-height: 36px;
-  margin-bottom: 12px;
+  min-height: 60px;
+  margin-bottom: 15px;
   text-align: center;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .product-price {
@@ -992,9 +997,9 @@ html {
   letter-spacing: 0.3px;
   text-align: center;
   width: 100%;
-  height: 50px;
+  min-height: 60px;
   display: -webkit-box;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -1011,9 +1016,9 @@ html {
   font-weight: 400;
   text-align: center;
   width: 100%;
-  height: 60px;
+  min-height: 80px;
   display: -webkit-box;
-  -webkit-line-clamp: 3;
+  -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -2938,10 +2943,10 @@ html {
   .product-name {
     font-size: 1.2rem;
     height: auto;
-    min-height: 40px;
-    margin-bottom: 8px;
+    min-height: 50px;
+    margin-bottom: 10px;
     display: -webkit-box;
-    -webkit-line-clamp: 2;
+    -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -2950,10 +2955,10 @@ html {
   .product-desc {
     font-size: 0.9rem;
     height: auto;
-    min-height: 50px;
-    margin-bottom: 12px;
+    min-height: 70px;
+    margin-bottom: 15px;
     display: -webkit-box;
-    -webkit-line-clamp: 3;
+    -webkit-line-clamp: 4;
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
