@@ -23,8 +23,8 @@ builder.Services.AddControllers();
 
 var app = builder.Build();
 
-// Cấu hình port cho Render
-var port = Environment.GetEnvironmentVariable("PORT") ?? "5249";
+// Cấu hình port cho Render/Docker
+var port = Environment.GetEnvironmentVariable("PORT") ?? "8080";
 app.Urls.Add($"http://0.0.0.0:{port}");
 
 app.UseCors("AllowAll");

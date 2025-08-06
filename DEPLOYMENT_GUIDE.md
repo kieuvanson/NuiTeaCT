@@ -19,9 +19,8 @@
 3. Kết nối với GitHub repository
 4. Chọn thư mục `NuiTeaApi`
 5. Cấu hình:
-   - **Environment**: .NET
-   - **Build Command**: `dotnet build`
-   - **Start Command**: `dotnet run`
+   - **Environment**: Docker
+   - **Dockerfile Path**: `./Dockerfile`
    - **Plan**: Free
 
 6. Thêm Environment Variables:
@@ -62,6 +61,7 @@ Sau khi có URL của backend, cập nhật:
 - Database connection cần được cấu hình đúng
 - CORS policy cần cho phép frontend domain
 - Environment variables cần được set đúng
+- Sử dụng Docker để đảm bảo tương thích với .NET 8.0
 
 ## Troubleshooting
 
@@ -76,4 +76,10 @@ Sau khi có URL của backend, cập nhật:
 
 ### Lỗi build
 - Kiểm tra dependencies trong package.json
-- Kiểm tra .NET version compatibility 
+- Kiểm tra .NET version compatibility (đã hạ xuống 8.0)
+- Kiểm tra Dockerfile configuration
+
+### Lỗi Docker
+- Kiểm tra Dockerfile syntax
+- Đảm bảo port configuration đúng (8080)
+- Kiểm tra environment variables 
