@@ -1,9 +1,10 @@
 services:
   - type: web
     name: nui-tea-api
-    env: docker
+    env: dotnet
     plan: free
-    dockerfilePath: Dockerfile
+    buildCommand: dotnet build
+    startCommand: dotnet run
     envVars:
       - key: ASPNETCORE_ENVIRONMENT
         value: Production
