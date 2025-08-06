@@ -4,7 +4,7 @@
     "builder": "NIXPACKS"
   },
   "deploy": {
-    "startCommand": "dotnet NuiTeaApi.dll",
+    "startCommand": "dotnet run",
     "healthcheckPath": "/health",
     "healthcheckTimeout": 100
   }

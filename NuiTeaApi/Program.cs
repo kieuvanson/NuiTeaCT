@@ -3,9 +3,10 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Đăng ký DbContext với PostgreSQL
+// Đăng ký DbContext với MySQL
 builder.Services.AddDbContext<NuiTeaContext>(options =>
-    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+    options.UseMySql(builder.Configuration.GetConnectionString("DefaultConnection"),
+    ServerVersion.AutoDetect(builder.Configuration.GetConnectionString("DefaultConnection"))));
 
 // Bật CORS cho tất cả nguồn (fix lỗi CORS cho local dev)
 builder.Services.AddCors(options =>
@@ -23,8 +24,8 @@ builder.Services.AddControllers();
 
 var app = builder.Build();
 
-// Cấu hình port cho Render/Docker
-var port = Environment.GetEnvironmentVariable("PORT") ?? "8080";
+// Cấu hình port cho Railway
+var port = Environment.GetEnvironmentVariable("PORT") ?? "3000";
 app.Urls.Add($"http://0.0.0.0:{port}");
 
 app.UseCors("AllowAll");
