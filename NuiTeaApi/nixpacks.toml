@@ -1,0 +1,11 @@
+[phases.setup]
+nixPkgs = ["dotnet-sdk"]
+
+[phases.install]
+cmds = ["dotnet restore"]
+
+[phases.build]
+cmds = ["dotnet build -c Release"]
+
+[start]
+cmd = "dotnet run" 
