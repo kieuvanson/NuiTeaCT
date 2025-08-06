@@ -197,6 +197,40 @@ function MenuBar({ user, setUser, setPage, onMenuScroll, setShowLogin, setShowCa
               </span>
             )}
           </button>
+          <button
+            onClick={() => {
+              if (!user) {
+                alert('Vui lòng đăng nhập để xem lịch sử đơn hàng');
+                setShowLogin && setShowLogin(true);
+                return;
+              }
+              setShowOrderHistory(true);
+            }}
+            style={{
+              background: 'linear-gradient(90deg, #b8860b, #e5d3b3)',
+              border: 'none',
+              color: '#fff',
+              fontSize: '12px',
+              cursor: 'pointer',
+              padding: '6px 12px',
+              borderRadius: '20px',
+              fontWeight: '600',
+              transition: 'all 0.2s',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '4px'
+            }}
+            onMouseEnter={(e) => {
+              e.target.style.transform = 'translateY(-1px)';
+              e.target.style.boxShadow = '0 2px 8px rgba(184, 134, 11, 0.3)';
+            }}
+            onMouseLeave={(e) => {
+              e.target.style.transform = 'translateY(0)';
+              e.target.style.boxShadow = 'none';
+            }}
+          >
+            📋 Lịch sử
+          </button>
           {user ? (
             <>
               <div onClick={() => setUserMenuOpen(v => !v)} style={{ cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 8 }}>
@@ -388,6 +422,30 @@ function MenuBar({ user, setUser, setPage, onMenuScroll, setShowLogin, setShowCa
                         {notifications.length}
                       </span>
                     )}
+                  </button>
+                  <button
+                    onClick={() => {
+                      if (!user) {
+                        alert('Vui lòng đăng nhập để xem lịch sử đơn hàng');
+                        setShowLogin && setShowLogin(true);
+                        return;
+                      }
+                      setShowOrderHistory(true);
+                      setMobileMenuOpen(false);
+                    }}
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '8px',
+                      background: 'none',
+                      border: 'none',
+                      padding: '12px',
+                      cursor: 'pointer',
+                      width: '100%',
+                      textAlign: 'left'
+                    }}
+                  >
+                    📋 Lịch sử đơn hàng
                   </button>
                   <button
                     onClick={() => { setUser(null); localStorage.removeItem('nui_tea_user'); setMobileMenuOpen(false); }}
