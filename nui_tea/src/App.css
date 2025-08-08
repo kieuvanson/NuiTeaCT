@@ -958,7 +958,7 @@ html {
   align-items: center;
   justify-content: center;
   position: absolute;
-  bottom: 120px;
+  bottom: 60px;
   left: 0;
   right: 0;
 }
@@ -999,7 +999,7 @@ html {
 .order-btn:hover {
   background: linear-gradient(135deg, #e5d3b3 0%, #b8860b 100%);
   box-shadow: 0 10px 30px rgba(184, 134, 11, 0.35);
-  transform: translateY(-2px);
+  transform: translateY(-3px) scale(1.05);
 }
 
 .order-btn:hover::before {
