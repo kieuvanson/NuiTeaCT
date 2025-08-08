@@ -934,7 +934,7 @@ html {
   text-overflow: ellipsis;
   line-height: 1.4;
   position: absolute;
-  top: 80px;
+  top: 70px;
   left: 0;
   right: 0;
   padding: 0 10px;
@@ -958,7 +958,7 @@ html {
   align-items: center;
   justify-content: center;
   position: absolute;
-  bottom: 80px;
+  bottom: 100px;
   left: 0;
   right: 0;
 }
