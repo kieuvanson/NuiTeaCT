@@ -917,18 +917,27 @@ html {
   padding: 25px 20px;
   background: #ffffff;
   text-align: center;
-  min-height: auto;
-  height: auto;
+  min-height: 200px;
+  height: 200px;
+  position: relative;
 }
 
 .product-desc {
-  min-height: auto;
-  height: auto;
+  min-height: 60px;
+  height: 60px;
   margin-bottom: 15px;
   text-align: center;
-  display: block;
-  overflow: visible;
-  text-overflow: unset;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.4;
+  position: absolute;
+  top: 80px;
+  left: 0;
+  right: 0;
+  padding: 0 10px;
 }
 
 .product-price {
@@ -948,6 +957,10 @@ html {
   height: 30px;
   align-items: center;
   justify-content: center;
+  position: absolute;
+  bottom: 80px;
+  left: 0;
+  right: 0;
 }
 
 .order-btn {
@@ -958,13 +971,15 @@ html {
   padding: 12px 24px;
   font-size: 1rem;
   font-weight: 600;
-  margin-top: auto;
   box-shadow: 0 6px 20px rgba(184, 134, 11, 0.25);
   cursor: pointer;
   transition: all 0.3s ease;
   letter-spacing: 0.3px;
   text-transform: uppercase;
-  position: relative;
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
   overflow: hidden;
   width: 100%;
   max-width: 180px;
@@ -1000,13 +1015,18 @@ html {
   letter-spacing: 0.3px;
   text-align: center;
   width: 100%;
-  height: auto;
-  min-height: auto;
-  display: block;
-  overflow: visible;
-  text-overflow: unset;
-  align-items: unset;
-  justify-content: unset;
+  height: 50px;
+  min-height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  position: absolute;
+  top: 20px;
+  left: 0;
+  right: 0;
+  padding: 0 10px;
 }
 
 .product-desc {
