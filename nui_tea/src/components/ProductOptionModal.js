@@ -16,11 +16,11 @@ const SUGARS = [
     { label: 'Không đường', value: '0%' }
 ];
 const TOPPINGS = [
-    { label: 'Trân châu đen', value: 'tran-chau-den' },
-    { label: 'Thạch dừa', value: 'thach-dua' },
-    { label: 'Pudding trứng', value: 'pudding-trung' },
-    { label: 'Kem cheese', value: 'kem-cheese' },
-    { label: 'Thạch trái cây', value: 'thach-trai-cay' }
+    { label: 'Trân châu đen (+7k)', value: 'tran-chau-den' },
+    { label: 'Thạch dừa (+5k)', value: 'thach-dua' },
+    { label: 'Pudding trứng (+6k)', value: 'pudding-trung' },
+    { label: 'Kem cheese (+8k)', value: 'kem-cheese' },
+    { label: 'Thạch trái cây (+5k)', value: 'thach-trai-cay' }
 ];
 
 // Topping cho trà sữa (có sẵn chân châu)
