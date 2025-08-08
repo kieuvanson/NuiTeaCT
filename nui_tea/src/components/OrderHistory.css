@@ -92,9 +92,10 @@
 .order-item {
     background: white;
     border-radius: 12px;
-    padding: 20px;
+    padding: 16px;
     border: 1px solid #e9ecef;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 12px;
 }
 
 .order-header {
@@ -109,14 +110,14 @@
 .order-info h3 {
     margin: 0 0 4px 0;
     color: #333;
-    font-size: 1.4rem;
-    font-weight: 700;
+    font-size: 1.2rem;
+    font-weight: 600;
 }
 
 .order-date {
     margin: 0;
     color: #666;
-    font-size: 1.1rem;
+    font-size: 1rem;
 }
 
 .order-status {
@@ -136,7 +137,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 12px 0;
+    padding: 8px 0;
     border-bottom: 1px solid #f8f9fa;
 }
 
@@ -159,27 +160,27 @@
 }
 
 .product-details h4 {
-    margin: 0 0 4px 0;
+    margin: 0 0 6px 0;
     color: #333;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     font-weight: 600;
 }
 
 .product-details p {
-    margin: 0 0 4px 0;
+    margin: 0 0 3px 0;
     color: #666;
-    font-size: 1.1rem;
+    font-size: 1rem;
 }
 
 .product-price {
-    font-weight: 700;
+    font-weight: 600;
     color: #b8860b;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
 }
 
 .order-summary {
-    margin-bottom: 16px;
-    padding: 16px;
+    margin-bottom: 12px;
+    padding: 12px;
     background: #f8f9fa;
     border-radius: 8px;
 }
@@ -195,8 +196,8 @@
 }
 
 .summary-row.total {
-    font-weight: 700;
-    font-size: 1.3rem;
+    font-weight: 600;
+    font-size: 1.1rem;
     color: #333;
     border-top: 1px solid #dee2e6;
     padding-top: 8px;
@@ -209,14 +210,14 @@
 }
 
 .order-details {
-    padding: 16px;
+    padding: 12px;
     background: #f8f9fa;
     border-radius: 8px;
-    font-size: 1.1rem;
+    font-size: 1rem;
 }
 
 .order-details p {
-    margin: 0 0 10px 0;
+    margin: 0 0 6px 0;
     color: #666;
 }
 
