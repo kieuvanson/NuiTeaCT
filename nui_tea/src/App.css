@@ -980,6 +980,7 @@ html {
   bottom: 20px;
   left: 50%;
   transform: translateX(-50%);
+  transform-origin: center;
   overflow: hidden;
   width: 100%;
   max-width: 180px;
@@ -999,7 +1000,7 @@ html {
 .order-btn:hover {
   background: linear-gradient(135deg, #e5d3b3 0%, #b8860b 100%);
   box-shadow: 0 10px 30px rgba(184, 134, 11, 0.35);
-  transform: translateY(-3px) scale(1.05);
+  transform: translateX(-50%) translateY(-3px) scale(1.02);
 }
 
 .order-btn:hover::before {
