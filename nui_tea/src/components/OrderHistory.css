@@ -67,7 +67,8 @@
     text-align: center;
     padding: 40px;
     color: #666;
-    font-size: 1.1rem;
+    font-size: 1.3rem;
+    font-weight: 500;
 }
 
 .no-orders {
@@ -78,7 +79,8 @@
 
 .no-orders p {
     margin: 0;
-    font-size: 1.1rem;
+    font-size: 1.3rem;
+    font-weight: 500;
 }
 
 .orders-list {
@@ -107,19 +109,20 @@
 .order-info h3 {
     margin: 0 0 4px 0;
     color: #333;
-    font-size: 1.1rem;
+    font-size: 1.4rem;
+    font-weight: 700;
 }
 
 .order-date {
     margin: 0;
     color: #666;
-    font-size: 0.9rem;
+    font-size: 1.1rem;
 }
 
 .order-status {
-    padding: 6px 12px;
+    padding: 8px 16px;
     border-radius: 20px;
-    font-size: 0.8rem;
+    font-size: 1rem;
     font-weight: 600;
     color: white;
     text-transform: uppercase;
@@ -158,19 +161,20 @@
 .product-details h4 {
     margin: 0 0 4px 0;
     color: #333;
-    font-size: 1rem;
+    font-size: 1.3rem;
+    font-weight: 600;
 }
 
 .product-details p {
-    margin: 0 0 2px 0;
+    margin: 0 0 4px 0;
     color: #666;
-    font-size: 0.9rem;
+    font-size: 1.1rem;
 }
 
 .product-price {
-    font-weight: 600;
-    color: #333;
-    font-size: 1rem;
+    font-weight: 700;
+    color: #b8860b;
+    font-size: 1.2rem;
 }
 
 .order-summary {
@@ -191,8 +195,8 @@
 }
 
 .summary-row.total {
-    font-weight: 600;
-    font-size: 1.1rem;
+    font-weight: 700;
+    font-size: 1.3rem;
     color: #333;
     border-top: 1px solid #dee2e6;
     padding-top: 8px;
@@ -201,17 +205,18 @@
 
 .summary-row.discount {
     color: #28a745;
+    font-size: 1.1rem;
 }
 
 .order-details {
     padding: 16px;
     background: #f8f9fa;
     border-radius: 8px;
-    font-size: 0.9rem;
+    font-size: 1.1rem;
 }
 
 .order-details p {
-    margin: 0 0 8px 0;
+    margin: 0 0 10px 0;
     color: #666;
 }
 
