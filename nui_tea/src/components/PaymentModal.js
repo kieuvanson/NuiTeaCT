@@ -221,7 +221,7 @@ function PaymentModal({ open, onClose, paymentMethod, amount, orderInfo, onPayme
                         border: '2px solid #f0f0f0'
                     }}>
                         <img
-                            src="/img/ck-qr.jpg"
+                            src="/img/qr ck.png"
                             alt="QR Code"
                             style={{
                                 width: '100%',
