@@ -613,7 +613,7 @@ html {
 .product-info h3 {
   font-size: 1.4rem;
   color: #444;
-  margin-bottom: 12px;
+  margin-bottom: 20px;
   font-weight: 500;
   font-family: 'Segoe UI', 'Roboto', 'Arial', sans-serif;
   letter-spacing: 0.3px;
@@ -623,7 +623,7 @@ html {
   font-size: 1.4rem;
   color: #8B4513;
   font-weight: 700;
-  margin-bottom: 15px;
+  margin-bottom: 25px;
 }
 
 .add-to-cart {
@@ -925,7 +925,7 @@ html {
 .product-desc {
   min-height: 60px;
   height: 60px;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
   text-align: center;
   display: flex;
   align-items: center;
@@ -933,10 +933,7 @@ html {
   overflow: hidden;
   text-overflow: ellipsis;
   line-height: 1.4;
-  position: absolute;
-  top: 70px;
-  left: 0;
-  right: 0;
+  position: relative;
   padding: 0 10px;
 }
 
