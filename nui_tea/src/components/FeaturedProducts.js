@@ -13,7 +13,7 @@ export default function FeaturedProducts({ products, user, setShowLogin }) {
     const handleShowOption = (product) => {
         console.log('Button clicked for product:', product.name);
         console.log('User:', user);
-        
+
         // Kiểm tra nếu chưa đăng nhập
         if (!user) {
             alert('Vui lòng đăng nhập để đặt hàng!');
@@ -211,27 +211,29 @@ export default function FeaturedProducts({ products, user, setShowLogin }) {
             </div>
 
             <ProductOptionModal
-                isOpen={showOption}
+                open={showOption}
                 onClose={handleCloseOption}
                 product={selectedProduct}
-                onAddToCart={addItem}
-                user={user}
+                onConfirm={(itemWithOptions) => {
+                    addItem(itemWithOptions);
+                    handleCloseOption();
+                }}
             />
-            
+
             {/* Debug info */}
-            <div style={{ 
-                position: 'fixed', 
-                top: '10px', 
-                right: '10px', 
-                background: 'rgba(0,0,0,0.8)', 
-                color: 'white', 
-                padding: '10px', 
+            <div style={{
+                position: 'fixed',
+                top: '10px',
+                right: '10px',
+                background: 'rgba(0,0,0,0.8)',
+                color: 'white',
+                padding: '10px',
                 borderRadius: '5px',
                 fontSize: '12px',
                 zIndex: 10000
             }}>
-                Modal Open: {showOption ? 'Yes' : 'No'}<br/>
-                Selected Product: {selectedProduct?.name || 'None'}<br/>
+                Modal Open: {showOption ? 'Yes' : 'No'}<br />
+                Selected Product: {selectedProduct?.name || 'None'}<br />
                 User: {user ? 'Logged in' : 'Not logged in'}
             </div>
         </section>

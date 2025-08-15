@@ -79,7 +79,7 @@ function ProductOptionModal({ product, open, onClose, onConfirm }) {
             tabIndex={-1} // Đảm bảo không bị blur khi chuyển focus
             style={{
                 position: 'fixed', top: 0, left: 0, right: 0, bottom: 0,
-                background: 'rgba(0,0,0,0.35)', zIndex: 2000,
+                background: 'rgba(0,0,0,0.35)', zIndex: 9999,
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
                 padding: 0,
                 minHeight: '100vh',
