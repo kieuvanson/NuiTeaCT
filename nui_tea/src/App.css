@@ -1023,10 +1023,7 @@ html {
   justify-content: center;
   overflow: hidden;
   text-overflow: ellipsis;
-  position: absolute;
-  top: 20px;
-  left: 0;
-  right: 0;
+  position: relative;
   padding: 0 10px;
 }
 
