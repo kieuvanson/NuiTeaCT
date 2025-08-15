@@ -9,9 +9,6 @@ export default function FeaturedProducts({ products, user, setShowLogin, setShow
     const { addItem } = useCart();
 
     const handleShowOption = (product) => {
-        console.log('Button clicked for product:', product.name);
-        console.log('User:', user);
-
         // Kiểm tra nếu chưa đăng nhập
         if (!user) {
             alert('Vui lòng đăng nhập để đặt hàng!');
@@ -19,7 +16,6 @@ export default function FeaturedProducts({ products, user, setShowLogin, setShow
             return;
         }
 
-        console.log('Setting selected product and showing modal');
         setSelectedProduct(product);
         setShowOption(true);
     };
@@ -31,11 +27,6 @@ export default function FeaturedProducts({ products, user, setShowLogin, setShow
     // Lọc bỏ sản phẩm hết hàng và lấy 9 sản phẩm đầu tiên
     const availableProducts = products.filter(p => p.isSoldOut !== true);
     const productsToShow = availableProducts.slice(0, 9);
-
-    // Debug: Log số lượng sản phẩm
-    console.log('Total products:', products.length);
-    console.log('Available products:', availableProducts.length);
-    console.log('Products to show:', productsToShow.length);
 
     return (
         <section className="featured-section">
@@ -220,23 +211,6 @@ export default function FeaturedProducts({ products, user, setShowLogin, setShow
                     setShowCart(true);
                 }}
             />
-
-            {/* Debug info */}
-            <div style={{
-                position: 'fixed',
-                top: '10px',
-                right: '10px',
-                background: 'rgba(0,0,0,0.8)',
-                color: 'white',
-                padding: '10px',
-                borderRadius: '5px',
-                fontSize: '12px',
-                zIndex: 10000
-            }}>
-                Modal Open: {showOption ? 'Yes' : 'No'}<br />
-                Selected Product: {selectedProduct?.name || 'None'}<br />
-                User: {user ? 'Logged in' : 'Not logged in'}
-            </div>
         </section>
     );
 } 

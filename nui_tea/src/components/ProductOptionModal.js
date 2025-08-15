@@ -47,10 +47,7 @@ function ProductOptionModal({ product, open, onClose, onConfirm }) {
     const [quantity, setQuantity] = useState(1);
     const [toppings, setToppings] = useState([]);
 
-    console.log('ProductOptionModal render:', { open, product: product?.name });
-
     if (!open || !product) {
-        console.log('Modal not showing because:', { open, hasProduct: !!product });
         return null;
     }
 
@@ -70,8 +67,6 @@ function ProductOptionModal({ product, open, onClose, onConfirm }) {
     const availableToppings = getToppingsByCategory();
 
     const handleConfirm = () => {
-        console.log('Product being added to cart:', product);
-        console.log('Product image:', product.image);
         onConfirm({
             ...product,
             options: { size, type, sugar, toppings },
