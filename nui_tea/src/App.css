@@ -3314,6 +3314,78 @@ html {
     opacity: 1 !important;
     visibility: visible !important;
   }
+
+  /* Force all story sections to be visible on mobile */
+  .about-section-modern.story-section {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+
+  .section-content {
+    display: block !important;
+    opacity: 1 !important;
+  }
+
+  .section-header {
+    display: block !important;
+    opacity: 1 !important;
+  }
+
+  .story-container {
+    display: flex !important;
+    flex-direction: column !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+
+  .story-chapter {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+  }
+
+  .chapter-content {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+
+  .chapter-number,
+  .chapter-title,
+  .chapter-text,
+  .chapter-icon {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+
+  /* Ensure all other sections are visible on mobile */
+  .values-section,
+  .commitment-section,
+  .cta-section {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+
+  .values-grid,
+  .commitment-content,
+  .cta-content {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+
+  .value-card,
+  .commitment-features,
+  .commitment-stats,
+  .cta-buttons {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
 }
 
 .mountain-gradient {
