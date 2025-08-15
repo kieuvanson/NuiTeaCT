@@ -2,13 +2,11 @@ import React, { useState } from 'react';
 import '../App.css';
 import ProductOptionModal from './ProductOptionModal';
 import { useCart } from '../contexts/CartContext';
-import { useNavigate } from 'react-router-dom';
 
 export default function FeaturedProducts({ products, user, setShowLogin, setShowCart }) {
     const [showOption, setShowOption] = useState(false);
     const [selectedProduct, setSelectedProduct] = useState(null);
     const { addItem } = useCart();
-    const navigate = useNavigate();
 
     const handleShowOption = (product) => {
         console.log('Button clicked for product:', product.name);

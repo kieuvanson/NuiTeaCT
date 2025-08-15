@@ -2785,7 +2785,7 @@ function PromotionsSection({ promoRef }) {
         </div>
 
         {/* Promotions Grid */}
-          {promos.length === 0 ? (
+        {promos.length === 0 ? (
           <div style={{
             textAlign: 'center',
             padding: '60px 20px',
@@ -2797,7 +2797,7 @@ function PromotionsSection({ promoRef }) {
             <div style={{ fontSize: '64px', marginBottom: 16 }}>🎉</div>
             <h3 style={{ color: '#8B4513', marginBottom: 8 }}>Chưa có khuyến mãi</h3>
             <p style={{ color: '#666' }}>Hãy quay lại sau để xem những ưu đãi mới nhất!</p>
-              </div>
+          </div>
         ) : (
           <div style={{
             display: 'grid',
@@ -2867,17 +2867,17 @@ function PromotionsSection({ promoRef }) {
                       color: '#8B4513',
                       marginBottom: '4px'
                     }}>
-                  {promo.discountType === 'percent'
-                    ? `Giảm ${promo.discountValue}%`
-                    : `Giảm ${promo.discountValue.toLocaleString()}đ`}
-                </div>
+                      {promo.discountType === 'percent'
+                        ? `Giảm ${promo.discountValue}%`
+                        : `Giảm ${promo.discountValue.toLocaleString()}đ`}
+                    </div>
                     <div style={{
                       fontSize: '14px',
                       color: '#666',
                       fontWeight: 500
                     }}>
                       {promo.description}
-                </div>
+                    </div>
                   </div>
                 </div>
 
@@ -3026,11 +3026,11 @@ function PromotionsSection({ promoRef }) {
                     fontWeight: 500
                   }}>
                     Nhấn để sao chép mã
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
         )}
 
 

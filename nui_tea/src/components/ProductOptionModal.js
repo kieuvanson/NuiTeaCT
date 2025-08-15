@@ -48,7 +48,7 @@ function ProductOptionModal({ product, open, onClose, onConfirm }) {
     const [toppings, setToppings] = useState([]);
 
     console.log('ProductOptionModal render:', { open, product: product?.name });
-    
+
     if (!open || !product) {
         console.log('Modal not showing because:', { open, hasProduct: !!product });
         return null;
