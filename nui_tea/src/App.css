@@ -3279,6 +3279,40 @@ html {
   .story-chapter {
     margin-bottom: 30px;
     /* Reduce spacing on mobile */
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+    display: block !important;
+  }
+
+  .story-chapter.animate-in {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+  }
+
+  .story-container {
+    gap: 20px;
+    /* Reduce gap on mobile */
+  }
+
+  .chapter-content {
+    padding: 20px;
+    /* Reduce padding on mobile */
+  }
+
+  /* Ensure all story elements are visible on mobile */
+  .story-transition {
+    opacity: 1 !important;
+    display: block !important;
+  }
+
+  .chapter-background {
+    opacity: 0.05 !important;
+    /* Reduce background opacity on mobile */
+  }
+
+  .chapter-text {
+    opacity: 1 !important;
+    visibility: visible !important;
   }
 }
 
