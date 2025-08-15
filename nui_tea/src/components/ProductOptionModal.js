@@ -47,7 +47,12 @@ function ProductOptionModal({ product, open, onClose, onConfirm }) {
     const [quantity, setQuantity] = useState(1);
     const [toppings, setToppings] = useState([]);
 
-    if (!open || !product) return null;
+    console.log('ProductOptionModal render:', { open, product: product?.name });
+    
+    if (!open || !product) {
+        console.log('Modal not showing because:', { open, hasProduct: !!product });
+        return null;
+    }
 
     // Xác định loại topping dựa trên category
     const getToppingsByCategory = () => {
@@ -85,7 +90,9 @@ function ProductOptionModal({ product, open, onClose, onConfirm }) {
                 minHeight: '100vh',
                 minWidth: '100vw',
                 transition: 'background 0.3s',
-                animation: 'fadeIn 0.2s'
+                animation: 'fadeIn 0.2s',
+                opacity: 1,
+                visibility: 'visible'
             }}
         // KHÔNG có onClick, onBlur, onMouseLeave ở đây!
         >
@@ -96,7 +103,10 @@ function ProductOptionModal({ product, open, onClose, onConfirm }) {
                 maxHeight: '96vh',
                 overflowY: 'auto',
                 display: 'flex', flexDirection: 'column',
-                animation: 'slideDown 0.25s'
+                animation: 'slideDown 0.25s',
+                opacity: 1,
+                visibility: 'visible',
+                zIndex: 10000
             }}>
                 <button onClick={onClose} style={{ position: 'absolute', top: 18, right: 18, background: 'none', border: 'none', fontSize: 30, color: '#888', cursor: 'pointer', zIndex: 10 }}>&times;</button>
                 <div style={{ display: 'flex', gap: 18, alignItems: 'center', marginBottom: 18 }}>
