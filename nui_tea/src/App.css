@@ -3229,6 +3229,59 @@ html {
   animation-delay: 1s;
 }
 
+/* Mobile optimization for About page */
+@media (max-width: 768px) {
+  .floating-leaf {
+    display: none;
+    /* Hide floating elements on mobile */
+  }
+
+  .floating-clouds,
+  .floating-leaves,
+  .floating-stars {
+    display: none;
+    /* Hide all floating elements on mobile */
+  }
+
+  .hero-content {
+    grid-template-columns: 1fr;
+    /* Single column on mobile */
+    gap: 30px;
+    padding: 0 20px;
+  }
+
+  .hero-title {
+    font-size: 2.5rem;
+    /* Smaller font on mobile */
+  }
+
+  .hero-subtitle {
+    font-size: 1.2rem;
+  }
+
+  .about-section-modern {
+    padding: 40px 20px;
+    /* Reduce padding on mobile */
+  }
+
+  .values-grid {
+    grid-template-columns: 1fr;
+    /* Single column on mobile */
+    gap: 20px;
+  }
+
+  .commitment-stats {
+    grid-template-columns: repeat(2, 1fr);
+    /* 2 columns on mobile */
+    gap: 15px;
+  }
+
+  .story-chapter {
+    margin-bottom: 30px;
+    /* Reduce spacing on mobile */
+  }
+}
+
 .mountain-gradient {
   position: absolute;
   bottom: 0;
