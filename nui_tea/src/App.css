@@ -2964,14 +2964,14 @@ html {
 
   .product-price {
     font-size: 1.6rem;
-    margin-bottom: 20px;
+    margin-bottom: 28px;
   }
 
   .product-name {
     font-size: 1.2rem;
     height: auto;
     min-height: auto;
-    margin-bottom: 16px;
+    margin-bottom: 20px;
     display: block;
     overflow: visible;
     text-overflow: unset;
@@ -2981,7 +2981,7 @@ html {
     font-size: 0.9rem;
     height: auto;
     min-height: auto;
-    margin-bottom: 20px;
+    margin-bottom: 28px;
     display: block;
     overflow: visible;
     text-overflow: unset;
@@ -3008,7 +3008,7 @@ html {
   }
 
   .product-info {
-    padding: 15px 12px;
+    padding: 20px 16px;
     min-height: auto;
     height: auto;
     display: flex;
