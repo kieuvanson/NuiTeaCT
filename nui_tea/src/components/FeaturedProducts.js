@@ -26,9 +26,9 @@ export default function FeaturedProducts({ products, user, setShowLogin }) {
         setSelectedProduct(null);
     };
 
-    // Lọc bỏ sản phẩm hết hàng và lấy 8 sản phẩm đầu tiên
+    // Lọc bỏ sản phẩm hết hàng và lấy 9 sản phẩm đầu tiên
     const availableProducts = products.filter(p => p.isSoldOut !== true);
-    const productsToShow = availableProducts.slice(0, 8);
+    const productsToShow = availableProducts.slice(0, 9);
 
     return (
         <section className="featured-section">
@@ -53,27 +53,27 @@ export default function FeaturedProducts({ products, user, setShowLogin }) {
                             transition: 'transform 0.18s, box-shadow 0.18s',
                             cursor: 'pointer',
                         }}
-                        onMouseOver={e => { 
-                            e.currentTarget.style.transform = 'translateY(-6px) scale(1.03)'; 
-                            e.currentTarget.style.boxShadow = '0 12px 40px #b8860b33'; 
+                        onMouseOver={e => {
+                            e.currentTarget.style.transform = 'translateY(-6px) scale(1.03)';
+                            e.currentTarget.style.boxShadow = '0 12px 40px #b8860b33';
                         }}
-                        onMouseOut={e => { 
-                            e.currentTarget.style.transform = 'none'; 
-                            e.currentTarget.style.boxShadow = '0 6px 32px #b8860b22'; 
+                        onMouseOut={e => {
+                            e.currentTarget.style.transform = 'none';
+                            e.currentTarget.style.boxShadow = '0 6px 32px #b8860b22';
                         }}
                     >
                         {product.isBestSeller && (
-                            <div className="best-seller-badge" style={{ 
-                                position: 'absolute', 
-                                top: 16, 
-                                left: 16, 
-                                background: '#ff9800', 
-                                color: '#fff', 
-                                fontWeight: 700, 
-                                borderRadius: 10, 
-                                padding: '3px 14px', 
-                                fontSize: 15, 
-                                boxShadow: '0 2px 8px #ff980033' 
+                            <div className="best-seller-badge" style={{
+                                position: 'absolute',
+                                top: 16,
+                                left: 16,
+                                background: '#ff9800',
+                                color: '#fff',
+                                fontWeight: 700,
+                                borderRadius: 10,
+                                padding: '3px 14px',
+                                fontSize: 15,
+                                boxShadow: '0 2px 8px #ff980033'
                             }}>
                                 Best Seller
                             </div>
@@ -107,29 +107,29 @@ export default function FeaturedProducts({ products, user, setShowLogin }) {
                                 </div>
                             </div>
                         )}
-                        <img 
-                            src={product.image} 
-                            alt={product.name} 
-                            className="featured-product-image" 
-                            style={{ 
-                                width: 140, 
-                                height: 140, 
-                                objectFit: 'cover', 
-                                borderRadius: 16, 
-                                marginBottom: 18, 
-                                boxShadow: '0 2px 12px #b8860b22' 
-                            }} 
+                        <img
+                            src={product.image}
+                            alt={product.name}
+                            className="featured-product-image"
+                            style={{
+                                width: 140,
+                                height: 140,
+                                objectFit: 'cover',
+                                borderRadius: 16,
+                                marginBottom: 18,
+                                boxShadow: '0 2px 12px #b8860b22'
+                            }}
                         />
-                        <div className="featured-product-name" style={{ 
-                            fontWeight: 800, 
-                            fontSize: 20, 
-                            color: '#7c4d03', 
-                            textAlign: 'center', 
-                            marginBottom: 8, 
-                            height: 60, 
-                            display: 'flex', 
-                            alignItems: 'center', 
-                            justifyContent: 'center' 
+                        <div className="featured-product-name" style={{
+                            fontWeight: 800,
+                            fontSize: 20,
+                            color: '#7c4d03',
+                            textAlign: 'center',
+                            marginBottom: 8,
+                            height: 60,
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center'
                         }}>
                             {product.name}
                         </div>
@@ -150,15 +150,15 @@ export default function FeaturedProducts({ products, user, setShowLogin }) {
                         }}>
                             {product.description}
                         </div>
-                        <div className="featured-product-price" style={{ 
-                            color: '#b8860b', 
-                            fontWeight: 800, 
-                            fontSize: 18, 
-                            marginBottom: 12, 
-                            height: 30, 
-                            display: 'flex', 
-                            alignItems: 'center', 
-                            justifyContent: 'center' 
+                        <div className="featured-product-price" style={{
+                            color: '#b8860b',
+                            fontWeight: 800,
+                            fontSize: 18,
+                            marginBottom: 12,
+                            height: 30,
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center'
                         }}>
                             {product.price?.toLocaleString()}đ
                         </div>
