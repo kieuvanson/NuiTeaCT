@@ -29,10 +29,15 @@ export default function FeaturedProducts({ products, user, setShowLogin }) {
     // Lọc bỏ sản phẩm hết hàng và lấy 9 sản phẩm đầu tiên
     const availableProducts = products.filter(p => p.isSoldOut !== true);
     const productsToShow = availableProducts.slice(0, 9);
+    
+    // Debug: Log số lượng sản phẩm
+    console.log('Total products:', products.length);
+    console.log('Available products:', availableProducts.length);
+    console.log('Products to show:', productsToShow.length);
 
     return (
         <section className="featured-section">
-            <h2 className="featured-title">Sản phẩm nổi bật</h2>
+            <h2 className="featured-title">Sản phẩm nổi bật ({productsToShow.length}/9)</h2>
             <div className="featured-products-grid">
                 {productsToShow.map(product => (
                     <div
