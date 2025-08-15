@@ -1591,15 +1591,15 @@ html {
   }
 
   .menu-page .product-card {
-    padding: 16px;
+    padding: 12px;
     min-height: auto;
     max-width: none;
     width: 100%;
   }
 
   .menu-page .product-image {
-    width: 100px;
-    height: 100px;
+    width: 140px;
+    height: 140px;
     margin-bottom: 12px;
   }
 
