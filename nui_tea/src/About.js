@@ -321,9 +321,9 @@ export default function About() {
                                     <h3 className="author-name">Kiều Vân Sơn</h3>
                                     <p className="author-title">Nhà sáng lập & CEO</p>
                                     <p className="author-description">
-                                        Với niềm đam mê bất tận với trà sữa và công nghệ, Kiều Vân Sơn đã tạo ra Nui Tea 
-                                        như một sự kết hợp hoàn hảo giữa hương vị truyền thống và công nghệ hiện đại. 
-                                        Anh luôn tin rằng mỗi ly trà sữa không chỉ là một thức uống, mà còn là một 
+                                        Với niềm đam mê bất tận với trà sữa và công nghệ, Kiều Vân Sơn đã tạo ra Nui Tea
+                                        như một sự kết hợp hoàn hảo giữa hương vị truyền thống và công nghệ hiện đại.
+                                        Anh luôn tin rằng mỗi ly trà sữa không chỉ là một thức uống, mà còn là một
                                         trải nghiệm, một câu chuyện về tình yêu với thiên nhiên và con người.
                                     </p>
                                     <div className="author-quote">
