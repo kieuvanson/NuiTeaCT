@@ -24,15 +24,16 @@
 
 .order-history-header {
     display: flex !important;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 24px;
-    border-bottom: 2px solid #f0f0f0;
-    background: white;
-    color: #333;
-    border-radius: 20px 20px 0 0;
-    position: relative;
-    min-height: 60px;
+    justify-content: space-between !important;
+    align-items: center !important;
+    padding: 20px 24px !important;
+    border-bottom: 2px solid #f0f0f0 !important;
+    background: white !important;
+    color: #333 !important;
+    border-radius: 20px 20px 0 0 !important;
+    position: relative !important;
+    min-height: 60px !important;
+    overflow: visible !important;
 }
 
 .order-history-header h2 {
@@ -43,23 +44,25 @@
 }
 
 .close-button {
-    background: #e74c3c;
-    border: none;
-    color: white;
-    font-size: 24px;
-    cursor: pointer;
-    padding: 10px;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
+    background: #e74c3c !important;
+    border: none !important;
+    color: white !important;
+    font-size: 24px !important;
+    cursor: pointer !important;
+    padding: 10px !important;
+    border-radius: 50% !important;
+    width: 40px !important;
+    height: 40px !important;
     display: flex !important;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.2s ease;
-    font-weight: bold;
-    position: relative;
-    z-index: 10;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    align-items: center !important;
+    justify-content: center !important;
+    transition: all 0.2s ease !important;
+    font-weight: bold !important;
+    position: relative !important;
+    z-index: 9999 !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2) !important;
+    opacity: 1 !important;
+    visibility: visible !important;
 }
 
 .close-button:hover {
