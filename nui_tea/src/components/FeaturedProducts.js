@@ -217,6 +217,9 @@ export default function FeaturedProducts({ products, user, setShowLogin }) {
                 onConfirm={(itemWithOptions) => {
                     addItem(itemWithOptions);
                     handleCloseOption();
+                    // Thông báo thành công và chuyển vào trang giỏ hàng
+                    alert('Đã thêm vào giỏ hàng thành công!');
+                    navigate('/cart');
                 }}
             />
 
