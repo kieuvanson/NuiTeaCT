@@ -21,7 +21,7 @@ export default function About() {
                     }
                 });
             },
-            { threshold: 0.3 }
+            { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
         );
 
         sectionsRef.current.forEach(section => {
@@ -300,6 +300,38 @@ export default function About() {
                             <div className="decoration-line"></div>
                             <div className="decoration-dot"></div>
                             <div className="decoration-line"></div>
+                        </div>
+                    </div>
+                </section>
+
+                {/* Author Section */}
+                <section className="about-section-modern author-section" ref={addToRefs}>
+                    <div className="section-content">
+                        <div className="section-header">
+                            <div className="section-icon">👨‍💻</div>
+                            <h2>Tác giả</h2>
+                            <div className="section-line"></div>
+                        </div>
+                        <div className="author-content">
+                            <div className="author-card">
+                                <div className="author-avatar">
+                                    <div className="avatar-icon">👨‍💻</div>
+                                </div>
+                                <div className="author-info">
+                                    <h3 className="author-name">Kiều Vân Sơn</h3>
+                                    <p className="author-title">Nhà sáng lập & CEO</p>
+                                    <p className="author-description">
+                                        Với niềm đam mê bất tận với trà sữa và công nghệ, Kiều Vân Sơn đã tạo ra Nui Tea 
+                                        như một sự kết hợp hoàn hảo giữa hương vị truyền thống và công nghệ hiện đại. 
+                                        Anh luôn tin rằng mỗi ly trà sữa không chỉ là một thức uống, mà còn là một 
+                                        trải nghiệm, một câu chuyện về tình yêu với thiên nhiên và con người.
+                                    </p>
+                                    <div className="author-quote">
+                                        <div className="quote-icon">💝</div>
+                                        <p>"Mỗi ly trà sữa là một tác phẩm nghệ thuật, mỗi khách hàng là một người bạn."</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </section>
