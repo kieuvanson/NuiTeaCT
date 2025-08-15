@@ -23,7 +23,7 @@
 }
 
 .order-history-header {
-    display: flex;
+    display: flex !important;
     justify-content: space-between;
     align-items: center;
     padding: 20px 24px;
@@ -31,6 +31,8 @@
     background: white;
     color: #333;
     border-radius: 20px 20px 0 0;
+    position: relative;
+    min-height: 60px;
 }
 
 .order-history-header h2 {
@@ -44,17 +46,20 @@
     background: #e74c3c;
     border: none;
     color: white;
-    font-size: 20px;
+    font-size: 24px;
     cursor: pointer;
-    padding: 8px;
+    padding: 10px;
     border-radius: 50%;
-    width: 36px;
-    height: 36px;
-    display: flex;
+    width: 40px;
+    height: 40px;
+    display: flex !important;
     align-items: center;
     justify-content: center;
     transition: all 0.2s ease;
     font-weight: bold;
+    position: relative;
+    z-index: 10;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 .close-button:hover {
