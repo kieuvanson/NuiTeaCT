@@ -229,7 +229,7 @@ function HomePage({ scrollToSection, setScrollToSection }) {
     <div className="main-content">
       <MenuBar user={user} setUser={setUser} setPage={setPage} onMenuScroll={handleMenuScroll} setShowLogin={setShowLogin} setShowCart={setShowCart} />
       <Banner bannerImage={bannerImage} />
-      <ProductSection user={user} setShowLogin={setShowLogin} />
+                <ProductSection user={user} setShowLogin={setShowLogin} setShowCart={setShowCart} />
       <PromotionsSection promoRef={promoRef} />
       <div className="banner-secondary" style={{ width: '100vw', position: 'relative', left: '50%', transform: 'translateX(-50%)', margin: '40px 0 0 0', textAlign: 'center' }}>
         <img src="https://tocotocotea.com.vn/wp-content/uploads/2021/12/slideshow1_2.jpg" alt="Banner ưu đãi" style={{ width: '100vw', maxWidth: '100vw', borderRadius: 18, boxShadow: '0 4px 32px #b8860b22', display: 'block' }} />
@@ -2617,7 +2617,7 @@ function Footer() {
   );
 }
 
-function ProductSection({ user, setShowLogin }) {
+function ProductSection({ user, setShowLogin, setShowCart }) {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
