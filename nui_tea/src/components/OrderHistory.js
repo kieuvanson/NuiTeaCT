@@ -6,6 +6,7 @@ import { API_BASE_URL } from '../config';
 const OrderHistory = ({ isOpen, onClose, user }) => {
     const [orders, setOrders] = useState([]);
     const [loading, setLoading] = useState(false);
+    const [expandedOrder, setExpandedOrder] = useState(null);
 
     useEffect(() => {
         if (isOpen && user) {
@@ -87,71 +88,83 @@ const OrderHistory = ({ isOpen, onClose, user }) => {
                         <div className="orders-list">
                             {orders.map((order) => (
                                 <div key={order.id} className="order-item">
-                                    <div className="order-header">
+                                    <div className="order-header" onClick={() => setExpandedOrder(expandedOrder === order.id ? null : order.id)}>
                                         <div className="order-info">
                                             <h3>Đơn hàng #{order.orderNumber}</h3>
                                             <p className="order-date">{formatDate(order.createdAt)}</p>
+                                            <p className="order-summary-text">
+                                                {order.items?.length || 0} sản phẩm - {(order.totalAmount - order.discountAmount).toLocaleString('vi-VN')}đ
+                                            </p>
                                         </div>
-                                        <div
-                                            className="order-status"
-                                            style={{ backgroundColor: getStatusColor(order.orderStatus) }}
-                                        >
-                                            {getStatusText(order.orderStatus)}
+                                        <div className="order-header-right">
+                                            <div
+                                                className="order-status"
+                                                style={{ backgroundColor: getStatusColor(order.orderStatus) }}
+                                            >
+                                                {getStatusText(order.orderStatus)}
+                                            </div>
+                                            <button className="expand-button">
+                                                {expandedOrder === order.id ? '▼' : '▶'}
+                                            </button>
                                         </div>
                                     </div>
 
-                                    <div className="order-items">
-                                        {order.items && order.items.map((item, index) => (
-                                            <div key={index} className="order-product">
-                                                <div className="product-info">
-                                                    <img
-                                                        src={item.productImage || '/logo192.png'}
-                                                        alt={item.productName}
-                                                        className="product-image"
-                                                    />
-                                                    <div className="product-details">
-                                                        <h4>{item.productName}</h4>
-                                                        <p>Size: {item.options?.size || 'Mặc định'}</p>
-                                                        <p>Đường: {item.options?.sugar || 'Mặc định'}</p>
-                                                        {item.options?.toppings && item.options.toppings.length > 0 && (
-                                                            <p>Topping: {item.options.toppings.join(', ')}</p>
-                                                        )}
-                                                        <p>Số lượng: {item.quantity}</p>
+                                    {expandedOrder === order.id && (
+                                        <div className="order-details-expanded">
+                                            <div className="order-items">
+                                                {order.items && order.items.map((item, index) => (
+                                                    <div key={index} className="order-product">
+                                                        <div className="product-info">
+                                                            <img
+                                                                src={item.productImage || '/logo192.png'}
+                                                                alt={item.productName}
+                                                                className="product-image"
+                                                            />
+                                                            <div className="product-details">
+                                                                <h4>{item.productName}</h4>
+                                                                <p>Size: {item.options?.size || 'Mặc định'}</p>
+                                                                <p>Đường: {item.options?.sugar || 'Mặc định'}</p>
+                                                                {item.options?.toppings && item.options.toppings.length > 0 && (
+                                                                    <p>Topping: {item.options.toppings.join(', ')}</p>
+                                                                )}
+                                                                <p>Số lượng: {item.quantity}</p>
+                                                            </div>
+                                                        </div>
+                                                        <div className="product-price">
+                                                            {(item.price * item.quantity).toLocaleString('vi-VN')}đ
+                                                        </div>
                                                     </div>
+                                                ))}
+                                            </div>
+
+                                            <div className="order-summary">
+                                                <div className="summary-row">
+                                                    <span>Tổng tiền:</span>
+                                                    <span>{order.totalAmount.toLocaleString('vi-VN')}đ</span>
                                                 </div>
-                                                <div className="product-price">
-                                                    {(item.price * item.quantity).toLocaleString('vi-VN')}đ
+                                                {order.discountAmount > 0 && (
+                                                    <div className="summary-row discount">
+                                                        <span>Giảm giá:</span>
+                                                        <span>-{order.discountAmount.toLocaleString('vi-VN')}đ</span>
+                                                    </div>
+                                                )}
+                                                <div className="summary-row total">
+                                                    <span>Thành tiền:</span>
+                                                    <span>{(order.totalAmount - order.discountAmount).toLocaleString('vi-VN')}đ</span>
                                                 </div>
                                             </div>
-                                        ))}
-                                    </div>
 
-                                    <div className="order-summary">
-                                        <div className="summary-row">
-                                            <span>Tổng tiền:</span>
-                                            <span>{order.totalAmount.toLocaleString('vi-VN')}đ</span>
-                                        </div>
-                                        {order.discountAmount > 0 && (
-                                            <div className="summary-row discount">
-                                                <span>Giảm giá:</span>
-                                                <span>-{order.discountAmount.toLocaleString('vi-VN')}đ</span>
+                                            <div className="order-details">
+                                                <p><strong>Khách hàng:</strong> {order.customerName}</p>
+                                                <p><strong>Số điện thoại:</strong> {order.phone}</p>
+                                                <p><strong>Email:</strong> {order.email}</p>
+                                                <p><strong>Địa chỉ:</strong> {order.address}</p>
+                                                {order.note && <p><strong>Ghi chú:</strong> {order.note}</p>}
+                                                <p><strong>Phương thức thanh toán:</strong> {order.paymentMethod}</p>
+                                                <p><strong>Trạng thái thanh toán:</strong> {order.paymentStatus}</p>
                                             </div>
-                                        )}
-                                        <div className="summary-row total">
-                                            <span>Thành tiền:</span>
-                                            <span>{(order.totalAmount - order.discountAmount).toLocaleString('vi-VN')}đ</span>
                                         </div>
-                                    </div>
-
-                                    <div className="order-details">
-                                        <p><strong>Khách hàng:</strong> {order.customerName}</p>
-                                        <p><strong>Số điện thoại:</strong> {order.phone}</p>
-                                        <p><strong>Email:</strong> {order.email}</p>
-                                        <p><strong>Địa chỉ:</strong> {order.address}</p>
-                                        {order.note && <p><strong>Ghi chú:</strong> {order.note}</p>}
-                                        <p><strong>Phương thức thanh toán:</strong> {order.paymentMethod}</p>
-                                        <p><strong>Trạng thái thanh toán:</strong> {order.paymentStatus}</p>
-                                    </div>
+                                    )}
                                 </div>
                             ))}
                         </div>
