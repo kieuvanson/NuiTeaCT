@@ -89,6 +89,12 @@ export default function CheckoutPage() {
             return;
         }
 
+        // Kiểm tra phương thức thanh toán
+        if (paymentMethod === 'momo' || paymentMethod === 'vnpay') {
+            alert('Tính năng này đang được phát triển. Vui lòng chọn phương thức thanh toán khác!');
+            return;
+        }
+
         // Nếu thanh toán online, hiển thị modal thanh toán
         if (paymentMethod !== 'cod') {
             setShowPaymentModal(true);
@@ -319,38 +325,38 @@ export default function CheckoutPage() {
                             </div>
                         </label>
 
-                        <label style={{ display: 'flex', alignItems: 'center', gap: 10, cursor: 'pointer', padding: '12px 16px', border: paymentMethod === 'momo' ? '2px solid #b8860b' : '1px solid #ddd', borderRadius: 10, background: paymentMethod === 'momo' ? '#faf8f3' : '#fff', transition: 'all 0.2s' }}>
+                        <label style={{ display: 'flex', alignItems: 'center', gap: 10, cursor: 'pointer', padding: '12px 16px', border: '1px solid #ddd', borderRadius: 10, background: '#f5f5f5', transition: 'all 0.2s', opacity: 0.6 }}>
                             <input
                                 type="radio"
                                 name="payment"
                                 value="momo"
-                                checked={paymentMethod === 'momo'}
-                                onChange={() => setPaymentMethod('momo')}
+                                checked={false}
+                                disabled
                                 style={{ width: 18, height: 18 }}
                             />
                             <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
                                 <span style={{ fontSize: 20 }}>💜</span>
                                 <div>
-                                    <div style={{ fontWeight: 600, color: '#333' }}>Ví MoMo</div>
-                                    <div style={{ fontSize: 13, color: '#666' }}>Thanh toán qua ứng dụng MoMo</div>
+                                    <div style={{ fontWeight: 600, color: '#999' }}>Ví MoMo</div>
+                                    <div style={{ fontSize: 13, color: '#999' }}>Đang phát triển</div>
                                 </div>
                             </div>
                         </label>
 
-                        <label style={{ display: 'flex', alignItems: 'center', gap: 10, cursor: 'pointer', padding: '12px 16px', border: paymentMethod === 'vnpay' ? '2px solid #b8860b' : '1px solid #ddd', borderRadius: 10, background: paymentMethod === 'vnpay' ? '#faf8f3' : '#fff', transition: 'all 0.2s' }}>
+                        <label style={{ display: 'flex', alignItems: 'center', gap: 10, cursor: 'pointer', padding: '12px 16px', border: '1px solid #ddd', borderRadius: 10, background: '#f5f5f5', transition: 'all 0.2s', opacity: 0.6 }}>
                             <input
                                 type="radio"
                                 name="payment"
                                 value="vnpay"
-                                checked={paymentMethod === 'vnpay'}
-                                onChange={() => setPaymentMethod('vnpay')}
+                                checked={false}
+                                disabled
                                 style={{ width: 18, height: 18 }}
                             />
                             <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
                                 <span style={{ fontSize: 20 }}>💳</span>
                                 <div>
-                                    <div style={{ fontWeight: 600, color: '#333' }}>VNPay</div>
-                                    <div style={{ fontSize: 13, color: '#666' }}>Thanh toán qua cổng VNPay</div>
+                                    <div style={{ fontWeight: 600, color: '#999' }}>VNPay</div>
+                                    <div style={{ fontSize: 13, color: '#999' }}>Đang phát triển</div>
                                 </div>
                             </div>
                         </label>
