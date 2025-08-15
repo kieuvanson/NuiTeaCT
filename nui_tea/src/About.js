@@ -111,7 +111,7 @@ export default function About() {
                                     <h3 className="chapter-title">Khởi nguồn từ núi rừng</h3>
                                     <div className="chapter-text">
                                         <p>Ngày xửa ngày xưa, ở một vùng núi xanh mát, nơi những đồi chè trải dài bất tận, sương sớm phủ trắng và không khí trong lành...</p>
-                                        <p><strong>Kiều Văn Sơn</strong> - người sáng lập Nui Tea, lớn lên giữa thiên nhiên, mang trong mình tình yêu với lá trà, với đất trời và khát vọng lan tỏa giá trị thuần khiết ấy đến mọi người.</p>
+                                        <p><strong>Kiều Vân Sơn</strong> - người sáng lập Nui Tea, lớn lên giữa thiên nhiên, mang trong mình tình yêu với lá trà, với đất trời và khát vọng lan tỏa giá trị thuần khiết ấy đến mọi người.</p>
                                         <p>Mỗi buổi sáng, khi ánh nắng đầu tiên chiếu lên sườn núi, cũng là lúc những búp trà non được hái bằng đôi tay trân trọng của người nông dân.</p>
                                     </div>
                                     <div className="chapter-icon">🏔️</div>
@@ -135,7 +135,7 @@ export default function About() {
                                     <div className="chapter-number">Chương 2</div>
                                     <h3 className="chapter-title">Hành trình vượt núi</h3>
                                     <div className="chapter-text">
-                                        <p>Bắt đầu từ một cửa hàng nhỏ dưới chân núi, <strong>Kiều Văn Sơn</strong> và Nui Tea đã trải qua nhiều thử thách...</p>
+                                        <p>Bắt đầu từ một cửa hàng nhỏ dưới chân núi, <strong>Kiều Vân Sơn</strong> và Nui Tea đã trải qua nhiều thử thách...</p>
                                         <p>Từ những ngày đầu tự tay pha chế, phục vụ từng vị khách đầu tiên, đến khi trở thành chuỗi thương hiệu được yêu thích.</p>
                                         <p>Mỗi ly trà sữa là một câu chuyện về hành trình vượt núi, chọn lá, ủ trà và gửi gắm tâm huyết của <strong>Kiều Văn Sơn</strong> cùng cả một tập thể.</p>
                                     </div>
@@ -160,7 +160,7 @@ export default function About() {
                                     <div className="chapter-number">Chương 3</div>
                                     <h3 className="chapter-title">Kết nối cộng đồng</h3>
                                     <div className="chapter-text">
-                                        <p>Ngày nay, dưới sự dẫn dắt của <strong>Kiều Văn Sơn</strong>, Nui Tea không chỉ là điểm đến của những người yêu trà sữa...</p>
+                                        <p>Ngày nay, dưới sự dẫn dắt của <strong>Kiều Vân Sơn</strong>, Nui Tea không chỉ là điểm đến của những người yêu trà sữa...</p>
                                         <p>Mà còn là nơi kết nối cộng đồng, lan tỏa cảm hứng sống xanh, sống lành mạnh và trân trọng từng giá trị tự nhiên mà núi rừng ban tặng.</p>
                                         <p>Đó là hành trình của sự kiên trì, sáng tạo và lòng biết ơn với thiên nhiên - tất cả bắt đầu từ tình yêu và đam mê của <strong>Kiều Văn Sơn</strong> với lá trà.</p>
                                     </div>
