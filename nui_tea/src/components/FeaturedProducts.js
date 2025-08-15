@@ -4,7 +4,7 @@ import ProductOptionModal from './ProductOptionModal';
 import { useCart } from '../contexts/CartContext';
 import { useNavigate } from 'react-router-dom';
 
-export default function FeaturedProducts({ products, user, setShowLogin }) {
+export default function FeaturedProducts({ products, user, setShowLogin, setShowCart }) {
     const [showOption, setShowOption] = useState(false);
     const [selectedProduct, setSelectedProduct] = useState(null);
     const { addItem } = useCart();
@@ -217,9 +217,9 @@ export default function FeaturedProducts({ products, user, setShowLogin }) {
                 onConfirm={(itemWithOptions) => {
                     addItem(itemWithOptions);
                     handleCloseOption();
-                    // Thông báo thành công và chuyển vào trang giỏ hàng
+                    // Thông báo thành công và mở modal giỏ hàng
                     alert('Đã thêm vào giỏ hàng thành công!');
-                    navigate('/cart');
+                    setShowCart(true);
                 }}
             />
 

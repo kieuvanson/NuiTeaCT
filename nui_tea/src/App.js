@@ -2726,7 +2726,7 @@ function ProductSection({ user, setShowLogin }) {
       });
   }, []);
 
-  return <FeaturedProducts products={products} user={user} setShowLogin={setShowLogin} />;
+  return <FeaturedProducts products={products} user={user} setShowLogin={setShowLogin} setShowCart={setShowCart} />;
 }
 
 export default App;
