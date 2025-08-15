@@ -992,8 +992,8 @@ html {
 
 .order-btn:hover {
   background: linear-gradient(135deg, #e5d3b3 0%, #b8860b 100%);
-  box-shadow: 0 10px 30px rgba(184, 134, 11, 0.35);
-  transform: translateX(-50%) translateY(-3px) scale(1.02);
+  box-shadow: 0 4px 15px rgba(184, 134, 11, 0.25);
+  transform: translateY(-2px);
 }
 
 .order-btn:hover::before {
