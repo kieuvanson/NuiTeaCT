@@ -957,10 +957,8 @@ html {
   height: 30px;
   align-items: center;
   justify-content: center;
-  position: absolute;
-  bottom: 60px;
-  left: 0;
-  right: 0;
+  position: relative;
+  padding: 0 10px;
 }
 
 .order-btn {
@@ -976,10 +974,8 @@ html {
   transition: all 0.3s ease;
   letter-spacing: 0.3px;
   text-transform: uppercase;
-  position: absolute;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
+  position: relative;
+  margin: 0 auto;
   transform-origin: center;
   overflow: hidden;
   width: 100%;
