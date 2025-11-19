@@ -1,3 +1,0 @@
-USE nui_tea_db;
-
-ALTER TABLE Orders ADD COLUMN Email VARCHAR(100) NOT NULL DEFAULT '' AFTER Phone; 

@@ -38,6 +38,8 @@ builder.Services.AddControllers();
 var app = builder.Build();
 
 // Chạy migration khi khởi động với error handling
+// Tạm thời comment để tránh lỗi bảng đã tồn tại
+/*
 try
 {
     using (var scope = app.Services.CreateScope())
@@ -51,6 +53,7 @@ catch (Exception ex)
     Console.WriteLine($"Migration error: {ex.Message}");
     // Không crash app nếu migration fail
 }
+*/
 
 // Cấu hình port cho Railway
 var port = Environment.GetEnvironmentVariable("PORT") ?? "3000";
